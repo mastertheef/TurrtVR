@@ -6,6 +6,9 @@ public class Projectile : MonoBehaviour {
 
     [SerializeField] private int ShotMaxRange = 100;
     [SerializeField] private float ShotSpeed = 100f;
+    [SerializeField] private float damage = 10;
+
+    public float Damage { get { return damage; } }
 
     private Vector3 startPosition;
     private bool fire = false;
