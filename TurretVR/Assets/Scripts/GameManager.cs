@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    [SerializeField] private List<Asteroid> asteroids;
+    //[SerializeField] private List<Asteroid> asteroids;
+    [SerializeField] private List<Enemy> enemies;
+
     [SerializeField] private int maxEnemies = 20;
     [SerializeField] private float spawnDistance = 30f;
     [SerializeField] private float spawnDelay = 2f;
@@ -29,10 +31,8 @@ public class GameManager : MonoBehaviour {
 
     private void SpawnEnemy()
     {
-        // create base Enemy class for asteroids and ships
-        Asteroid enemy = Instantiate(asteroids[Random.Range(0, asteroids.Count - 1)]);
-        //Asteroid enemy = Instantiate(asteroids[0]);
-        //enemy.transform.position = Random.insideUnitSphere * spawnDistance;
+        Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
+        //Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
         Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
         enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
         enemyCount++;

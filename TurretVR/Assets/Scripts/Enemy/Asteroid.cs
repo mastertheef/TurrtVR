@@ -6,7 +6,7 @@ public class Asteroid : Enemy
 {
     [SerializeField] private int hitsToExplode = 4;
     [SerializeField] private float rotationSpeed = 1f;
-    [SerializeField] private float moveSpeed = 0.05f;
+    
     private Vector3 rotationDirection;
 
 	// Use this for initialization

@@ -8,13 +8,21 @@ public class EnemyShip : Enemy {
     [SerializeField] private GameObject[] cannons;
     [SerializeField] private float shootDelay = 5;
     [SerializeField] private float shootScatter = 10;
+    [SerializeField] private float moveScatter = 20;
+    [SerializeField] private float flyAwayDistance = 600;
+    [SerializeField] private float shootDistance = 300;
+
     private bool canShoot = false;
     private float shootTimer;
+    private Vector3 targetPoint;
      
 	// Use this for initialization
 	void Start () {
         //Explode();
         shootTimer = shootDelay;
+        float left = Random.Range(moveScatter * (-2), moveScatter * (-1));
+        targetPoint = (Vector3.zero - transform.position) + Random.insideUnitSphere * moveScatter;
+        transform.rotation = Quaternion.LookRotation(targetPoint.normalized);
 	}
 	
 	// Update is called once per frame
@@ -27,7 +35,7 @@ public class EnemyShip : Enemy {
         shootTimer -= Time.deltaTime;
         if (shootTimer <= 0)
         {
-            canShoot = true;
+            canShoot = true && (Vector3.Distance(Vector3.zero, transform.position) <= shootDistance);
             shootTimer = shootDelay;
         }
 
@@ -57,9 +65,34 @@ public class EnemyShip : Enemy {
 
     private void FixedUpdate()
     {
-        if (canShoot && !isExploded)
+        if (canShoot && !isExploded && !isBehind())
         {
             Shoot();
         }
+
+        if (fliedAway())
+        {
+            Destroy(gameObject);
+        }
+        StartCoroutine(Fly());
+    }
+
+    private IEnumerator Fly()
+    {
+        while (!isExploded)
+        {
+            transform.position += targetPoint.normalized * moveSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private bool fliedAway()
+    {
+        return Vector3.Distance(Vector3.zero, transform.position) >= flyAwayDistance;
+    }
+
+    private bool isBehind()
+    {
+        return (Vector3.zero - transform.position).z > 0;
     }
 }

@@ -325,9 +325,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516568694142898}
-  m_LocalRotation: {x: -0, y: -0, z: 0.15158708, w: 0.988444}
-  m_LocalPosition: {x: 7.81, y: 4.95, z: 17.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.15158865, y: 0.98844373, z: 0, w: 0}
+  m_LocalPosition: {x: 7.81, y: 4.95, z: 892}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4925956957136704}
   - {fileID: 4093070210924310}
@@ -341,7 +341,7 @@ Transform:
   - {fileID: 4234409092094650}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.438002}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 17.438002}
 --- !u!4 &4819740289211470
 Transform:
   m_ObjectHideFlags: 1
@@ -374,7 +374,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856510185997014}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1142,7 +1142,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114292143389242480, guid: a6596973493ce074b9048e997bc1f3bf,
     type: 2}
-  hitPoints: 100
+  hitPoints: 50
+  moveSpeed: 0.05
+  laser: {fileID: 114023303464773588, guid: 7e3b9f19a73dec44a90cd80dd5948f0a, type: 2}
+  cannons:
+  - {fileID: 1029293137229394}
+  - {fileID: 1029627842833378}
+  shootDelay: 1
+  shootScatter: 10
+  moveScatter: 20
+  flyAwayDistance: 600
+  shootDistance: 300
 --- !u!114 &114514667240946600
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField] private Explosion explosion;
     [SerializeField] protected float hitPoints = 100;
+    [SerializeField] protected float moveSpeed = 0.05f;
     protected bool isExploded = false;
 
    // Use this for initialization
