@@ -284,14 +284,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fed1e65908e08468ec3b84558c3f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroids:
+  enemies:
   - {fileID: 114847823757295296, guid: f1359f427c5d37f4f98fb1754ec4066a, type: 2}
   - {fileID: 114724568798663102, guid: e9d3b9b2b30c7dd499cca4c76a8da579, type: 2}
   - {fileID: 114723558271541370, guid: dc465a89d16be854792e2092250f2c14, type: 2}
   - {fileID: 114348471222700792, guid: bb372ebe7dae7694e90fd428b1a635e0, type: 2}
   - {fileID: 114821942993336610, guid: f5218fa61416c0046aa29be17a6e0791, type: 2}
   - {fileID: 114635963632962484, guid: f51da92576e4cb14ebbe4ea64dc41099, type: 2}
-  enemies:
   - {fileID: 114430997070385602, guid: 47781772f22b9fe448f32db1ce60e3b0, type: 2}
   maxEnemies: 20
   spawnDistance: 500
