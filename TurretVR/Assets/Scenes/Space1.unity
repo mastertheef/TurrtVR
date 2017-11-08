@@ -292,6 +292,7 @@ MonoBehaviour:
   - {fileID: 114821942993336610, guid: f5218fa61416c0046aa29be17a6e0791, type: 2}
   - {fileID: 114635963632962484, guid: f51da92576e4cb14ebbe4ea64dc41099, type: 2}
   - {fileID: 114430997070385602, guid: 47781772f22b9fe448f32db1ce60e3b0, type: 2}
+  - {fileID: 114715953024307394, guid: c8b49426555b5744f968ccab93a0ebca, type: 2}
   maxEnemies: 20
   spawnDistance: 500
   spawnDelay: 5
