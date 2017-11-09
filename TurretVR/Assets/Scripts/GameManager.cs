@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : Singleton<GameManager> {
 
     //[SerializeField] private List<Asteroid> asteroids;
     [SerializeField] private List<Enemy> enemies;
 
     [SerializeField] private int maxEnemies = 20;
-    [SerializeField] private float spawnDistance = 30f;
+    [SerializeField] private float spawnDistance = 500f;
+    [SerializeField] private float firstShootDistance = 400f;
+    [SerializeField] private float secondShootDistance = 200f;
+
     [SerializeField] private float spawnDelay = 2f;
 
     [SerializeField] private float enemyMaxLeft = -60;
-    [SerializeField] private float enemyMaxRight = 060;
+    [SerializeField] private float enemyMaxRight = 60;
     [SerializeField] private float enemyMaxTop = 40;
     [SerializeField] private float enemyMaxBottom = -5;
+
+    public float SpawnDistance { get { return spawnDistance; } }
+    public float FirstShootDistance { get { return firstShootDistance; } }
+    public float SecondShootDistance { get { return secondShootDistance; } }
 
     private int enemyCount = 0;
     private float spawnCounter;

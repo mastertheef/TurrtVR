@@ -6,20 +6,21 @@ public class EnemyShip : Enemy {
 
     [SerializeField] private Projectile laser;
     [SerializeField] private GameObject[] cannons;
-    [SerializeField] private float shootDelay = 5;
+
     [SerializeField] private float shootScatter = 10;
     [SerializeField] private float moveScatter = 20;
     [SerializeField] private float flyAwayDistance = 600;
-    [SerializeField] private float shootDistance = 300;
+
+    //[SerializeField] private float shootDistance = 300;
+    //[SerializeField] private float shootDelay = 5;
 
     private bool canShoot = false;
-    private float shootTimer;
+    private int shootCount = 0;
+    
     private Vector3 targetPoint;
      
 	// Use this for initialization
 	void Start () {
-        //Explode();
-        shootTimer = shootDelay;
         float left = Random.Range(moveScatter * (-2), moveScatter * (-1));
         targetPoint = (Vector3.zero - transform.position) + Random.insideUnitSphere * moveScatter;
         transform.rotation = Quaternion.LookRotation(targetPoint.normalized);
@@ -32,14 +33,10 @@ public class EnemyShip : Enemy {
             Explode();
         }
 
-        shootTimer -= Time.deltaTime;
-        if (shootTimer <= 0)
-        {
-            canShoot = true && (Vector3.Distance(Vector3.zero, transform.position) <= shootDistance);
-            shootTimer = shootDelay;
-        }
-
-	}
+        float distance = Vector3.Distance(Vector3.zero, transform.position);
+        canShoot = (shootCount == 0 && distance <= GameManager.Instance.FirstShootDistance) ||
+                   (shootCount == 1 && distance <= GameManager.Instance.SecondShootDistance);
+    }
     
     protected override void Explode()
     {
@@ -60,14 +57,15 @@ public class EnemyShip : Enemy {
         var targetRange = new Vector3(target.x + Random.Range(shootScatter *-1, shootScatter), target.y + Random.Range(shootScatter*-1, shootScatter), target.z);
         l.transform.LookAt(targetRange);
         l.Fire();
-        canShoot = false;
     }
 
     private void FixedUpdate()
     {
         if (canShoot && !isExploded && !isBehind())
         {
+            canShoot = false;
             Shoot();
+            shootCount++;
         }
 
         if (fliedAway())
