@@ -20,7 +20,6 @@ public class Asteroid : Enemy
 	    if (hitsToExplode <= 0 && !isExploded)
         {
             Explode();
-            
         }
 	}
 
@@ -41,6 +40,7 @@ public class Asteroid : Enemy
         if (other.gameObject.tag == "Player")
         {
             this.Explode();
+            Turret.Instance.ShootCounterPenetration = GameManager.Instance.FireSpeedPenetration;
         }
     }
 
@@ -51,5 +51,11 @@ public class Asteroid : Enemy
             transform.localPosition = Vector3.MoveTowards(transform.position, Vector3.zero, moveSpeed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    protected override void Explode()
+    {
+        base.Explode();
+        GameManager.Instance.AsteroidsCount++;
     }
 }

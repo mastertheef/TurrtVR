@@ -48,6 +48,8 @@ public class EnemyShip : Enemy {
             children[i].isKinematic = false;
             chidrenColliders[i].isTrigger = false;
         }
+
+        GameManager.Instance.ShipsCount++;
     }
 
     private void Shoot()
