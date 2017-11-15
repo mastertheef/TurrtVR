@@ -20,17 +20,20 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float enemyMaxRight = 60;
     [SerializeField] private float enemyMaxTop = 40;
     [SerializeField] private float enemyMaxBottom = -5;
-    [SerializeField] private float fireSpeedPenetration = 5;
-    [SerializeField] private float fireSpeedPenetrationTimer = 3;
+    [SerializeField] private float fireSpeedPenetration = 0.15f;
+    [SerializeField] private float fireSpeedPenetrationSconds = 3;
     [SerializeField] private float cantFireTimer = 3;
     [SerializeField] private Text asteroidsLabel;
     [SerializeField] private Text shipsLabel;
+    [SerializeField] private Text speedPenetrationTimerLabel;
+
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
     private int asteroidsMissed = 0;
     private int shipsMissed = 0;
     private bool shipDamaged = false;
+    [SerializeField] private float speedPenetrationTimer = 0;
 
     public int AsteroidsCount
     {
@@ -53,7 +56,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public float FireSpeedPenetration { get { return fireSpeedPenetration; } }
-    public float FireSpeedPenetrationTimer { get { return fireSpeedPenetrationTimer; } }
+    public float FireSpeedPenetrationTimer { get { return fireSpeedPenetrationSconds; } }
     public float CantFireTimer { get { return cantFireTimer; } }
 
     public float SpawnDistance { get { return spawnDistance; } }
@@ -72,7 +75,23 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    private void SpeedPenetrationCountDown()
+    {
+        if (--speedPenetrationTimer == 0)
+        {
+            speedPenetrationTimerLabel.text = string.Empty;
+            CancelInvoke("SpeedPenetrationCountDown");
+        };
+        speedPenetrationTimerLabel.text = speedPenetrationTimer.ToString();
+    }
+
+    public void StartSpeedCountDown()
+    {
+        speedPenetrationTimer = fireSpeedPenetrationSconds;
+        InvokeRepeating("SpeedPenetrationCountDown", 1, 1);
     }
 
     private void SpawnEnemy()

@@ -41,6 +41,8 @@ public class Asteroid : Enemy
         {
             this.Explode();
             Turret.Instance.ShootCounterPenetration = GameManager.Instance.FireSpeedPenetration;
+            GameManager.Instance.StartSpeedCountDown();
+            //Turret.Instance.SetStartShootCounters();
         }
     }
 

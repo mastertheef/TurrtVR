@@ -10,7 +10,7 @@ public class Turret : Singleton<Turret>
     [SerializeField] private GameObject CannonRight;
 
     [SerializeField] private float shootCounter;
-    private float shootCounterPenetration = 0;
+    [SerializeField] private float shootCounterPenetration = 0;
     private float leftShootCounter;
     private float rightShootCounter;
 
@@ -39,7 +39,7 @@ public class Turret : Singleton<Turret>
     // Use this for initialization
     void Start()
     {
-        //SetStartShootCounters();
+        SetStartShootCounters();
     }
 
     // Update is called once per frame
@@ -64,15 +64,15 @@ public class Turret : Singleton<Turret>
         }
 
 
-        if (fireSpeedPenetrationTimer > 0)
-        {
-            fireSpeedPenetrationTimer -= Time.deltaTime;
-        }
-        else
-        {
-            shootCounterPenetration = 0;
-            fireSpeedPenetrationTimer = 0;
-        }
+        //if (fireSpeedPenetrationTimer > 0)
+        //{
+        //    fireSpeedPenetrationTimer -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    shootCounterPenetration = 0;
+        //    fireSpeedPenetrationTimer = 0;
+        //}
 
         if (cantFireTimer > 0)
         {
@@ -110,7 +110,7 @@ public class Turret : Singleton<Turret>
         Instantiate(Shot, Cannon.transform.position, transform.rotation).Fire();
     }
 
-    private void SetStartShootCounters()
+    public void SetStartShootCounters()
     {
         leftShootCounter = 0f;
         rightShootCounter = ShootCounter / 2;
