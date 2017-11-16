@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4468821861247068}
   - component: {fileID: 114181338862463856}
   - component: {fileID: 65773163450131286}
+  - component: {fileID: 82035894298023132}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Player
@@ -263,6 +264,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.16, y: 1, z: 7.58}
   m_Center: {x: -14.6, y: 6.46, z: -11.25}
+--- !u!82 &82035894298023132
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1612900321883930}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3302f9994effbd048ad411fd4fcbe880, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114181338862463856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,4 +358,5 @@ MonoBehaviour:
   Shot: {fileID: 114023303464773588, guid: 8cfdc280dcb986e49959b9ba9a9b62de, type: 2}
   CannonLeft: {fileID: 1715270308717046}
   CannonRight: {fileID: 1557102772382964}
-  shootCounter: 10
+  shootCounter: 0.27
+  shootCounterPenetration: 0

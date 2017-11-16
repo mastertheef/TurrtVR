@@ -80,10 +80,14 @@ public class GameManager : Singleton<GameManager>
 
     private void SpeedPenetrationCountDown()
     {
+        speedPenetrationTimerLabel.enabled = true;
         if (--speedPenetrationTimer == 0)
         {
-            speedPenetrationTimerLabel.text = string.Empty;
             CancelInvoke("SpeedPenetrationCountDown");
+            speedPenetrationTimerLabel.enabled = false;
+            Turret.Instance.ShootCounterPenetration = 0;
+            Turret.Instance.RestartIfFiring();
+            
         };
         speedPenetrationTimerLabel.text = speedPenetrationTimer.ToString();
     }

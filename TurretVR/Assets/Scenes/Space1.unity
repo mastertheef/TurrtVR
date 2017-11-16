@@ -302,8 +302,8 @@ MonoBehaviour:
   enemyMaxRight: 60
   enemyMaxTop: 40
   enemyMaxBottom: -5
-  fireSpeedPenetration: 20
-  fireSpeedPenetrationSconds: 3
+  fireSpeedPenetration: 0.15
+  fireSpeedPenetrationSconds: 4
   cantFireTimer: 3
   asteroidsLabel: {fileID: 1106938520}
   shipsLabel: {fileID: 585691238}
@@ -513,16 +513,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4468821861247068, guid: 8fd5de9f519a81a49954c17a442830d7, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114181338862463856, guid: 8fd5de9f519a81a49954c17a442830d7,
-        type: 2}
-      propertyPath: shootCounter
-      value: 0.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 114181338862463856, guid: 8fd5de9f519a81a49954c17a442830d7,
-        type: 2}
-      propertyPath: shootCounterPenetration
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
