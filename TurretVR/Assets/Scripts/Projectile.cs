@@ -37,6 +37,14 @@ public class Projectile : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (gameObject.tag == "EnemyLaser" && other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private float GetDistance()
     {
         return Mathf.Abs(Vector3.Distance(startPosition, this.transform.position));

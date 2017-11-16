@@ -11,18 +11,11 @@ public class Turret : Singleton<Turret>
 
     [SerializeField] private float shootCounter;
     [SerializeField] private float shootCounterPenetration = 0;
-    private float leftShootCounter;
-    private float rightShootCounter;
 
-    private bool leftShoot = false;
-    private bool rightShoot = false;
-
-
-    private float fireSpeedPenetrationTimer = 0;
-    private float cantFireTimer = 0;
     private bool canFire;
     private bool startedFiring;
     private bool isFiring;
+    private bool isDamaged;
 
     public float ShootCounterPenetration
     {
@@ -31,6 +24,11 @@ public class Turret : Singleton<Turret>
     }
 
     public bool IsFiring { get { return isFiring; } }
+    public bool CanFire { get { return canFire && !isDamaged; } }
+    public bool IsDamaged {
+        get { return isDamaged; }
+        set { isDamaged = value; }
+    }
 
     public float ShootCounter
     {
@@ -43,29 +41,19 @@ public class Turret : Singleton<Turret>
     // Use this for initialization
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) )
+        if (Input.GetMouseButton(0))
         {
             if (!startedFiring)
             {
                 StartCoroutine(PlayStartShootAndWait());
             }
         }
-    }
-
-    private IEnumerator PlayStartShootAndWait()
-    {
-        startedFiring = true;
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(audioSource.clip);
-        canFire = false;
-        yield return new WaitForSeconds(3);
-        canFire = true;
     }
 
     private void FixedUpdate()
@@ -83,10 +71,20 @@ public class Turret : Singleton<Turret>
             StopFiring();
         }
 
-        if (canFire && !isFiring)
+        if (CanFire && !isFiring)
         {
             StartFiring();
         }
+    }
+
+    private IEnumerator PlayStartShootAndWait()
+    {
+        startedFiring = true;
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(audioSource.clip);
+        canFire = false;
+        yield return new WaitForSeconds(3);
+        canFire = true;
     }
 
     public void RestartIfFiring()
@@ -96,6 +94,13 @@ public class Turret : Singleton<Turret>
             StopFiring();
             StartFiring();
         }
+    }
+
+    private IEnumerator GetDamage()
+    {
+        isDamaged = true;
+        yield return new WaitForSeconds(GameManager.Instance.CantFireTimer);
+        isDamaged = false;
     }
 
     private void StartFiring()
