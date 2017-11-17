@@ -71,6 +71,7 @@ public class Turret : Singleton<Turret>
             StopFiring();
         }
 
+
         if (CanFire && !isFiring)
         {
             StartFiring();
@@ -96,9 +97,10 @@ public class Turret : Singleton<Turret>
         }
     }
 
-    private IEnumerator GetDamage()
+    public IEnumerator GetDamage()
     {
         isDamaged = true;
+        StopFiring();
         yield return new WaitForSeconds(GameManager.Instance.CantFireTimer);
         isDamaged = false;
     }

@@ -42,6 +42,7 @@ public class Projectile : MonoBehaviour {
         if (gameObject.tag == "EnemyLaser" && other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+            Turret.Instance.GetDamage();
         }
     }
 
