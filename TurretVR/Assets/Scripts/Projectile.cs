@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour {
     [SerializeField] private float ShotSpeed = 100f;
     [SerializeField] private float damage = 10;
 
+    [SerializeField] HitEffect HitEffect;
+
     public float Damage { get { return damage; } }
 
     private Vector3 startPosition;
@@ -42,6 +44,15 @@ public class Projectile : MonoBehaviour {
         if (gameObject.tag == "EnemyLaser" && other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Asteroid" || collision.gameObject.tag == "EnemyPart")
+        {
+            var hitPosition = collision.contacts[0].point;
+            Instantiate(HitEffect, hitPosition, Quaternion.identity);
         }
     }
 
