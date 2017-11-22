@@ -41,13 +41,14 @@ public class Turret : Singleton<Turret>
     // Use this for initialization
     void Start()
     {
-
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) || GvrControllerInput.ClickButton)
         {
             if (!startedFiring)
             {
@@ -65,12 +66,11 @@ public class Turret : Singleton<Turret>
             {
                 audioSource.Stop();
             }
-            StopCoroutine(PlayStartShootAndWait());
+            if (CanFire) { StopCoroutine(PlayStartShootAndWait()); }
             startedFiring = false;
             canFire = false;
             StopFiring();
         }
-
 
         if (CanFire && !isFiring)
         {
@@ -86,6 +86,15 @@ public class Turret : Singleton<Turret>
         canFire = false;
         yield return new WaitForSeconds(3);
         canFire = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "EnemyLaser")
+        {
+            isDamaged = true;
+            GameManager.Instance.StartCantFireCountDown();
+        }
     }
 
     public void RestartIfFiring()
@@ -105,14 +114,14 @@ public class Turret : Singleton<Turret>
         isDamaged = false;
     }
 
-    private void StartFiring()
+    public void StartFiring()
     {
         InvokeRepeating("FireLeft", 0, ShootCounter);
         InvokeRepeating("FireRight", ShootCounter / 2, ShootCounter);
         isFiring = true;
     }
 
-    private void StopFiring()
+    public void StopFiring()
     {
         CancelInvoke("FireLeft");
         CancelInvoke("FireRight");

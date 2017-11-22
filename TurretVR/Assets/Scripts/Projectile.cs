@@ -33,6 +33,8 @@ public class Projectile : MonoBehaviour {
         while (GetDistance() < ShotMaxRange)
         {
             transform.localPosition += transform.forward * Time.deltaTime * ShotSpeed;
+            //transform.Translate(transform.forward * ShotSpeed * Time.deltaTime);
+
             yield return null;
         }
 
@@ -50,7 +52,7 @@ public class Projectile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Asteroid" || collision.gameObject.tag == "EnemyPart")
+        if (gameObject.tag != "EnemyLaser" && (collision.gameObject.tag == "Asteroid" || collision.gameObject.tag == "EnemyShip"))
         {
             var hitPosition = collision.contacts[0].point;
             Instantiate(HitEffect, hitPosition, Quaternion.identity);

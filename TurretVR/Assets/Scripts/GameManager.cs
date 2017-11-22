@@ -22,10 +22,12 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float enemyMaxBottom = -5;
     [SerializeField] private float fireSpeedPenetration = 0.15f;
     [SerializeField] private float fireSpeedPenetrationSconds = 3;
-    [SerializeField] private float cantFireTimer = 3;
+    [SerializeField] private float cantFireTimer = 0;
+    [SerializeField] private float cantFireTimerSconds = 3;
     [SerializeField] private Text asteroidsLabel;
     [SerializeField] private Text shipsLabel;
     [SerializeField] private Text speedPenetrationTimerLabel;
+    [SerializeField] private Text cantFireTimerLabel;
 
 
     private int asteroidsCount = 0;
@@ -64,7 +66,6 @@ public class GameManager : Singleton<GameManager>
     public float SecondShootDistance { get { return secondShootDistance; } }
 
     private int enemyCount = 0;
-    private float spawnCounter;
 
     // Use this for initialization
     void Start()
@@ -78,6 +79,8 @@ public class GameManager : Singleton<GameManager>
         
     }
 
+
+    // Refactor this fucking code duplication
     private void SpeedPenetrationCountDown()
     {
         speedPenetrationTimerLabel.enabled = true;
@@ -89,13 +92,33 @@ public class GameManager : Singleton<GameManager>
             Turret.Instance.RestartIfFiring();
             
         };
-        speedPenetrationTimerLabel.text = speedPenetrationTimer.ToString();
+        speedPenetrationTimerLabel.text = string.Format("Fire speed slower for {0} sconds ", speedPenetrationTimer.ToString());
     }
+
+    private void CantFireCountDown()
+    {
+        cantFireTimerLabel.enabled = true;
+        Turret.Instance.StopFiring();
+        if (--cantFireTimer == 0)
+        {
+            CancelInvoke("CantFireCountDown");
+            cantFireTimerLabel.enabled = false;
+            Turret.Instance.IsDamaged = false;
+        };
+        speedPenetrationTimerLabel.text = string.Format("Cant fire for {0} sconds ", cantFireTimer.ToString());
+    }
+
 
     public void StartSpeedCountDown()
     {
         speedPenetrationTimer = fireSpeedPenetrationSconds;
-        InvokeRepeating("SpeedPenetrationCountDown", 1, 1);
+        InvokeRepeating("SpeedPenetrationCountDown", 0, 1);
+    }
+
+    public void StartCantFireCountDown()
+    {
+        cantFireTimer = cantFireTimerSconds;
+        InvokeRepeating("CantFireCountDown", 0, 1);
     }
 
     private void SpawnEnemy()

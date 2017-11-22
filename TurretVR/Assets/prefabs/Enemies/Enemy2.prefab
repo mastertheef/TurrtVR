@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 114604086285221040}
   m_Layer: 8
   m_Name: Horisontal
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 114772059813665146}
   m_Layer: 8
   m_Name: Vertical
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,6 +176,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -191,6 +192,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -208,6 +210,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -223,6 +226,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -327,17 +331,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
-  hitPoints: 20
+  hitPoints: 100
   moveSpeed: 0.05
   laser: {fileID: 114023303464773588, guid: 7e3b9f19a73dec44a90cd80dd5948f0a, type: 2}
   cannons:
   - {fileID: 1235216163515702}
   - {fileID: 1543239448118412}
-  shootDelay: 5
   shootScatter: 10
   moveScatter: 20
   flyAwayDistance: 600
-  shootDistance: 300
 --- !u!114 &114772059813665146
 MonoBehaviour:
   m_ObjectHideFlags: 1

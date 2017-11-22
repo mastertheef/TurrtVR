@@ -10,6 +10,7 @@ public class EnemyShip : Enemy {
     [SerializeField] private float shootScatter = 10;
     [SerializeField] private float moveScatter = 20;
     [SerializeField] private float flyAwayDistance = 600;
+    
 
     //[SerializeField] private float shootDistance = 300;
     //[SerializeField] private float shootDelay = 5;
@@ -56,8 +57,9 @@ public class EnemyShip : Enemy {
     {
         var target = Camera.main.transform.position;
         Projectile l = Instantiate(laser, cannons[Random.Range(0, cannons.Length - 1)].transform.position, transform.rotation);
-        var targetRange = new Vector3(target.x + Random.Range(shootScatter *-1, shootScatter), target.y + Random.Range(shootScatter*-1, shootScatter), target.z);
-        l.transform.LookAt(targetRange);
+        //var targetRange = new Vector3(target.x + Random.Range(shootScatter *-1, shootScatter), target.y + Random.Range(shootScatter*-1, shootScatter), target.z);
+        //l.transform.LookAt(targetRange);
+        l.transform.LookAt(target);
         l.Fire();
     }
 
