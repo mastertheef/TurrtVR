@@ -54,6 +54,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -69,6 +70,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -123,11 +125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0091d3a4fb9f88045b754a0520164dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitsToExplode: 4
   explosion: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
-  rotationSpeed: 1
+  hitPoints: 100
   moveSpeed: 0.1
+  hitsToExplode: 4
+  rotationSpeed: 1
 --- !u!136 &136621762712772128
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -135,7 +138,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757245415732440}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4975
   m_Height: 1.6620001
