@@ -12,6 +12,7 @@ TagManager:
   - Canvas
   - EnemyShip
   - EnemyLaser
+  - FireStart
   layers:
   - Default
   - TransparentFX

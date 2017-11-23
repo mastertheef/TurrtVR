@@ -9,8 +9,13 @@ public class Turret : Singleton<Turret>
     [SerializeField] private GameObject CannonLeft;
     [SerializeField] private GameObject CannonRight;
 
+    [SerializeField] private GameObject FireStartEffect;
+
     [SerializeField] private float shootCounter;
     [SerializeField] private float shootCounterPenetration = 0;
+
+    private GameObject fireStartLeft;
+    private GameObject fireStartRight;
 
     private bool canFire;
     private bool startedFiring;
@@ -59,12 +64,13 @@ public class Turret : Singleton<Turret>
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || GvrControllerInput.ClickButtonUp)
         {
             AudioSource audioSource = GetComponent<AudioSource>();
             if (audioSource.isPlaying)
             {
                 audioSource.Stop();
+                DestroyFireStart();
             }
             if (CanFire) { StopCoroutine(PlayStartShootAndWait()); }
             startedFiring = false;
@@ -84,8 +90,27 @@ public class Turret : Singleton<Turret>
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(audioSource.clip);
         canFire = false;
+
+        ShowFireStart();
         yield return new WaitForSeconds(3);
         canFire = true;
+        DestroyFireStart();
+    }
+
+    private void ShowFireStart()
+    {
+        fireStartLeft = fireStartLeft == null
+           ? Instantiate(FireStartEffect, CannonLeft.transform)
+           : fireStartLeft;
+        fireStartRight = fireStartRight == null
+            ? Instantiate(FireStartEffect, CannonRight.transform)
+            : fireStartRight;
+    }
+
+    private void DestroyFireStart()
+    {
+        if (fireStartLeft != null) Destroy(fireStartLeft);
+        if (fireStartRight != null) Destroy(fireStartRight);
     }
 
     private void OnCollisionEnter(Collision collision)
