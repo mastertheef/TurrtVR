@@ -113,15 +113,6 @@ public class Turret : Singleton<Turret>
         if (fireStartRight != null) Destroy(fireStartRight);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "EnemyLaser")
-        {
-            isDamaged = true;
-            GameManager.Instance.StartCantFireCountDown();
-        }
-    }
-
     public void RestartIfFiring()
     {
         if (isFiring)
@@ -129,14 +120,6 @@ public class Turret : Singleton<Turret>
             StopFiring();
             StartFiring();
         }
-    }
-
-    public IEnumerator GetDamage()
-    {
-        isDamaged = true;
-        StopFiring();
-        yield return new WaitForSeconds(GameManager.Instance.CantFireTimer);
-        isDamaged = false;
     }
 
     public void StartFiring()

@@ -118,6 +118,7 @@ MonoBehaviour:
   moveSpeed: 0.1
   hitsToExplode: 4
   rotationSpeed: 1
+  debuff: {fileID: 114904634479761950, guid: 5d12bfe17078e734ab570237ae108c82, type: 2}
 --- !u!114 &114726852102692414
 MonoBehaviour:
   m_ObjectHideFlags: 1

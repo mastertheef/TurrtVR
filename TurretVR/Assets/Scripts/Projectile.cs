@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour {
     [SerializeField] private float damage = 10;
 
     [SerializeField] HitEffect HitEffect;
+    [SerializeField] BaseEffect debuf;
 
     public float Damage { get { return damage; } }
 
@@ -33,21 +34,10 @@ public class Projectile : MonoBehaviour {
         while (GetDistance() < ShotMaxRange)
         {
             transform.localPosition += transform.forward * Time.deltaTime * ShotSpeed;
-            //transform.Translate(transform.forward * ShotSpeed * Time.deltaTime);
-
             yield return null;
         }
 
         Destroy(this.gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (gameObject.tag == "EnemyLaser" && other.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-            Turret.Instance.GetDamage();
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -56,6 +46,12 @@ public class Projectile : MonoBehaviour {
         {
             var hitPosition = collision.contacts[0].point;
             Instantiate(HitEffect, hitPosition, Quaternion.identity);
+        }
+
+        else if (gameObject.tag == "EnemyLaser" && collision.gameObject.tag == "Player")
+        {
+            EffectSystem.Instance.AddEffect(debuf);
+            Destroy(gameObject);
         }
     }
 

@@ -20,22 +20,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float enemyMaxRight = 60;
     [SerializeField] private float enemyMaxTop = 40;
     [SerializeField] private float enemyMaxBottom = -5;
-    [SerializeField] private float fireSpeedPenetration = 0.15f;
-    [SerializeField] private float fireSpeedPenetrationSconds = 3;
-    [SerializeField] private float cantFireTimer = 0;
-    [SerializeField] private float cantFireTimerSconds = 3;
     [SerializeField] private Text asteroidsLabel;
     [SerializeField] private Text shipsLabel;
-    [SerializeField] private Text speedPenetrationTimerLabel;
-    [SerializeField] private Text cantFireTimerLabel;
-
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
     private int asteroidsMissed = 0;
     private int shipsMissed = 0;
     private bool shipDamaged = false;
-    [SerializeField] private float speedPenetrationTimer = 0;
 
     public int AsteroidsCount
     {
@@ -57,10 +49,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public float FireSpeedPenetration { get { return fireSpeedPenetration; } }
-    public float FireSpeedPenetrationTimer { get { return fireSpeedPenetrationSconds; } }
-    public float CantFireTimer { get { return cantFireTimer; } }
-
     public float SpawnDistance { get { return spawnDistance; } }
     public float FirstShootDistance { get { return firstShootDistance; } }
     public float SecondShootDistance { get { return secondShootDistance; } }
@@ -79,52 +67,10 @@ public class GameManager : Singleton<GameManager>
         
     }
 
-
-    // Refactor this fucking code duplication
-    private void SpeedPenetrationCountDown()
-    {
-        speedPenetrationTimerLabel.enabled = true;
-        if (--speedPenetrationTimer == 0)
-        {
-            CancelInvoke("SpeedPenetrationCountDown");
-            speedPenetrationTimerLabel.enabled = false;
-            Turret.Instance.ShootCounterPenetration = 0;
-            Turret.Instance.RestartIfFiring();
-            
-        };
-        speedPenetrationTimerLabel.text = string.Format("Fire speed slower for {0} sconds ", speedPenetrationTimer.ToString());
-    }
-
-    private void CantFireCountDown()
-    {
-        cantFireTimerLabel.enabled = true;
-        Turret.Instance.StopFiring();
-        if (--cantFireTimer == 0)
-        {
-            CancelInvoke("CantFireCountDown");
-            cantFireTimerLabel.enabled = false;
-            Turret.Instance.IsDamaged = false;
-        };
-        speedPenetrationTimerLabel.text = string.Format("Cant fire for {0} sconds ", cantFireTimer.ToString());
-    }
-
-
-    public void StartSpeedCountDown()
-    {
-        speedPenetrationTimer = fireSpeedPenetrationSconds;
-        InvokeRepeating("SpeedPenetrationCountDown", 0, 1);
-    }
-
-    public void StartCantFireCountDown()
-    {
-        cantFireTimer = cantFireTimerSconds;
-        InvokeRepeating("CantFireCountDown", 0, 1);
-    }
-
     private void SpawnEnemy()
     {
-        Enemy enemy = Instantiate(enemies[enemies.Count - 1]);
-        //Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
+        //Enemy enemy = Instantiate(enemies[enemies.Count -1]);
+        Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
         Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
         enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
         enemyCount++;

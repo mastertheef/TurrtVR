@@ -57,9 +57,9 @@ public class EnemyShip : Enemy {
     {
         var target = Camera.main.transform.position;
         Projectile l = Instantiate(laser, cannons[Random.Range(0, cannons.Length - 1)].transform.position, transform.rotation);
-        //var targetRange = new Vector3(target.x + Random.Range(shootScatter *-1, shootScatter), target.y + Random.Range(shootScatter*-1, shootScatter), target.z);
-        //l.transform.LookAt(targetRange);
-        l.transform.LookAt(target);
+        var targetRange = new Vector3(target.x + Random.Range(shootScatter * -1, shootScatter), target.y + Random.Range(shootScatter * -1, shootScatter), target.z);
+        l.transform.LookAt(targetRange);
+        //l.transform.LookAt(target);
         l.Fire();
     }
 

@@ -6,6 +6,7 @@ public class Asteroid : Enemy
 {
     [SerializeField] private int hitsToExplode = 4;
     [SerializeField] private float rotationSpeed = 1f;
+    [SerializeField] private BaseEffect debuff;
     
     private Vector3 rotationDirection;
 
@@ -40,9 +41,11 @@ public class Asteroid : Enemy
         if (other.gameObject.tag == "Player")
         {
             this.Explode();
-            Turret.Instance.ShootCounterPenetration = GameManager.Instance.FireSpeedPenetration;
-            GameManager.Instance.StartSpeedCountDown();
-            Turret.Instance.RestartIfFiring();
+
+            EffectSystem.Instance.AddEffect(debuff);
+            //Turret.Instance.ShootCounterPenetration = GameManager.Instance.FireSpeedPenetration;
+            //GameManager.Instance.StartSpeedCountDown();
+            //Turret.Instance.RestartIfFiring();
         }
     }
 

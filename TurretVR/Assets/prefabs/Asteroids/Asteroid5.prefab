@@ -131,6 +131,7 @@ MonoBehaviour:
   moveSpeed: 0.1
   hitsToExplode: 4
   rotationSpeed: 1
+  debuff: {fileID: 114904634479761950, guid: 5d12bfe17078e734ab570237ae108c82, type: 2}
 --- !u!135 &135081476845509242
 SphereCollider:
   m_ObjectHideFlags: 1

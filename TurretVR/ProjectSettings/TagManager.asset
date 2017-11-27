@@ -13,6 +13,7 @@ TagManager:
   - EnemyShip
   - EnemyLaser
   - FireStart
+  - ReduceSpeeedDebuf
   layers:
   - Default
   - TransparentFX
