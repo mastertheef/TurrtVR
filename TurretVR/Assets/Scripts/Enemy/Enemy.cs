@@ -5,8 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     [SerializeField] private Explosion explosion;
-    [SerializeField] protected float hitPoints = 100;
+    [SerializeField] protected float hitPoints = 12;
     [SerializeField] protected float moveSpeed = 0.05f;
+    [SerializeField] protected int score = 5;
+
     protected bool isExploded = false;
 
    // Use this for initialization
@@ -16,8 +18,8 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+       
+    }
 
     protected virtual void Explode()
     {
@@ -31,7 +33,15 @@ public class Enemy : MonoBehaviour {
             meshRenderer.enabled = false;
         if (collider != null)
             collider.enabled = false;
-        gameObject.GetComponent<EnemyPointer>().RemoveIndication();
+    }
+
+    protected void ExplodeIfKilled()
+    {
+        if (hitPoints <= 0 && !isExploded)
+        {
+            Explode();
+            GameManager.Instance.Score += score;
+        }
     }
 
     public virtual void TakeDamage(Collider collider)

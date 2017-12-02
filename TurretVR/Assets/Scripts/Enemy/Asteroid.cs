@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Asteroid : Enemy
 {
-    [SerializeField] private int hitsToExplode = 4;
     [SerializeField] private float rotationSpeed = 1f;
     [SerializeField] private BaseEffect debuff;
-    
+
     private Vector3 rotationDirection;
 
 	// Use this for initialization
@@ -18,10 +17,7 @@ public class Asteroid : Enemy
 	
 	// Update is called once per frame
 	void Update () {
-	    if (hitsToExplode <= 0 && !isExploded)
-        {
-            Explode();
-        }
+        ExplodeIfKilled();
 	}
 
     private void FixedUpdate()
@@ -34,18 +30,14 @@ public class Asteroid : Enemy
     {
         if (other.gameObject.tag == "Laser")
         {
-            hitsToExplode--;
+            TakeDamage(other.collider);
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.tag == "Player")
         {
             this.Explode();
-
             EffectSystem.Instance.AddEffect(debuff);
-            //Turret.Instance.ShootCounterPenetration = GameManager.Instance.FireSpeedPenetration;
-            //GameManager.Instance.StartSpeedCountDown();
-            //Turret.Instance.RestartIfFiring();
         }
     }
 

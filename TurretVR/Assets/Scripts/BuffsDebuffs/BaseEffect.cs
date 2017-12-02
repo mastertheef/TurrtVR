@@ -13,7 +13,7 @@ public abstract class BaseEffect : MonoBehaviour
     protected abstract string timerText { get; }
 
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
         var ui = GameObject.FindGameObjectWithTag("Canvas").transform;
         label = Instantiate(labelPrefab, ui);
@@ -40,7 +40,10 @@ public abstract class BaseEffect : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(label.gameObject);
+        if (label != null)
+        {
+            Destroy(label.gameObject);
+        }
     }
 
     protected void CountDown()
@@ -52,6 +55,11 @@ public abstract class BaseEffect : MonoBehaviour
             label.enabled = false;
         };
         label.text = string.Format(timerText, Ttl.ToString());
+    }
+
+    public virtual bool? Condition()
+    {
+        return null;
     }
     protected abstract void SetEffect();
     protected abstract void RevertEffect();

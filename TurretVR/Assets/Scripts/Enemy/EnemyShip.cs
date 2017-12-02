@@ -10,7 +10,6 @@ public class EnemyShip : Enemy {
     [SerializeField] private float shootScatter = 10;
     [SerializeField] private float moveScatter = 20;
     [SerializeField] private float flyAwayDistance = 600;
-    
 
     //[SerializeField] private float shootDistance = 300;
     //[SerializeField] private float shootDelay = 5;
@@ -29,10 +28,7 @@ public class EnemyShip : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
-		if (hitPoints <= 0 && !isExploded)
-        {
-            Explode();
-        }
+        ExplodeIfKilled();
 
         float distance = Vector3.Distance(Vector3.zero, transform.position);
         canShoot = (shootCount == 0 && distance <= GameManager.Instance.FirstShootDistance) ||

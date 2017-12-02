@@ -41,8 +41,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706246098441240}
   m_LocalRotation: {x: -0, y: 0.008726567, z: -0, w: 0.999962}
-  m_LocalPosition: {x: 8.584809, y: 18.586103, z: -16.72611}
-  m_LocalScale: {x: 0.10000005, y: 0.1, z: 0.10000005}
+  m_LocalPosition: {x: 0.94915, y: -0.54935247, z: 6.1024}
+  m_LocalScale: {x: 0.116104, y: -0.1, z: 0.062}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   damage: 3
   HitEffect: {fileID: 114620219072588348, guid: e01da2da2cb371446a4cced13cbcbdf6,
     type: 2}
+  debuf: {fileID: 0}
 --- !u!114 &114463417209094912
 MonoBehaviour:
   m_ObjectHideFlags: 1

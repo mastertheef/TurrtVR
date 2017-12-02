@@ -8,11 +8,12 @@ public class Turret : Singleton<Turret>
     [SerializeField] private Projectile Shot;
     [SerializeField] private GameObject CannonLeft;
     [SerializeField] private GameObject CannonRight;
-
     [SerializeField] private GameObject FireStartEffect;
-
     [SerializeField] private float shootCounter;
-    [SerializeField] private float shootCounterPenetration = 0;
+
+    private float shootCounterPenetration = 0;
+    private float shootCounterSpeedUp = 0;
+    private float projectileAdditionalDamage = 0;
 
     private GameObject fireStartLeft;
     private GameObject fireStartRight;
@@ -28,6 +29,18 @@ public class Turret : Singleton<Turret>
         set { shootCounterPenetration = value; }
     }
 
+    public float ShootCounterSpeedUp
+    {
+        get { return shootCounterSpeedUp; }
+        set { shootCounterSpeedUp = value; }
+    }
+
+    public float ProjectileAdditionalDamage
+    {
+        get { return projectileAdditionalDamage; }
+        set { projectileAdditionalDamage = value; }
+    }
+
     public bool IsFiring { get { return isFiring; } }
     public bool CanFire { get { return canFire && !isDamaged; } }
     public bool IsDamaged {
@@ -39,9 +52,11 @@ public class Turret : Singleton<Turret>
     {
         get
         {
-            return shootCounter + shootCounterPenetration;
+            return shootCounter + shootCounterPenetration - ShootCounterSpeedUp;
         }
     }
+
+    public float ProjectileAdditionalScale { get; set; }
 
     // Use this for initialization
     void Start()
@@ -53,7 +68,7 @@ public class Turret : Singleton<Turret>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) || GvrControllerInput.ClickButton)
+        if (Input.GetButton("Fire1"))
         {
             if (!startedFiring)
             {
@@ -64,7 +79,7 @@ public class Turret : Singleton<Turret>
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonUp(0) || GvrControllerInput.ClickButtonUp)
+        if (Input.GetButtonUp("Fire1"))
         {
             AudioSource audioSource = GetComponent<AudioSource>();
             if (audioSource.isPlaying)
@@ -78,7 +93,7 @@ public class Turret : Singleton<Turret>
             StopFiring();
         }
 
-        if (CanFire && !isFiring)
+        if (Input.GetButton("Fire1") && CanFire && !isFiring)
         {
             StartFiring();
         }
@@ -138,16 +153,28 @@ public class Turret : Singleton<Turret>
 
     private void FireProjectile(GameObject Cannon)
     {
-        Instantiate(Shot, Cannon.transform.position, transform.rotation).Fire();
+        Projectile proj = Instantiate(Shot, Cannon.transform.position, transform.rotation);
+        ApplyProjectileModifiers(proj);
+        proj.Fire();
     }
 
     private void FireLeft()
     {
-        Instantiate(Shot, CannonLeft.transform.position, transform.rotation).Fire();
+        Projectile proj = Instantiate(Shot, CannonLeft.transform.position, transform.rotation);
+        ApplyProjectileModifiers(proj);
+        proj.Fire();
     }
 
     private void FireRight()
     {
-        Instantiate(Shot, CannonRight.transform.position, transform.rotation).Fire();
+        Projectile proj = Instantiate(Shot, CannonRight.transform.position, transform.rotation);
+        ApplyProjectileModifiers(proj);
+        proj.Fire(); ;
+    }
+
+    private void ApplyProjectileModifiers(Projectile proj)
+    {
+        proj.AddDamage = ProjectileAdditionalDamage;
+        proj.transform.localScale += new Vector3(ProjectileAdditionalScale, ProjectileAdditionalScale, ProjectileAdditionalScale);
     }
 }

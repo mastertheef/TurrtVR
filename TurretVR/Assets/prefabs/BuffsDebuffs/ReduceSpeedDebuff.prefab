@@ -54,4 +54,4 @@ MonoBehaviour:
   duration: 3
   labelPrefab: {fileID: 114455294648212066, guid: 5952eddc77ecdf846a94b4f3752b691d,
     type: 2}
-  speedReduction: 4
+  speedReduction: 0.15

@@ -14,6 +14,8 @@ TagManager:
   - EnemyLaser
   - FireStart
   - ReduceSpeeedDebuf
+  - SpeedBurst
+  - PowerBurst
   layers:
   - Default
   - TransparentFX

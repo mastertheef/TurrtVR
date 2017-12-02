@@ -11,7 +11,8 @@ public class Projectile : MonoBehaviour {
     [SerializeField] HitEffect HitEffect;
     [SerializeField] BaseEffect debuf;
 
-    public float Damage { get { return damage; } }
+    public float Damage { get { return damage + AddDamage; } }
+    public float AddDamage { get; set; }
 
     private Vector3 startPosition;
     private bool fire = false;

@@ -20,11 +20,11 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float enemyMaxRight = 60;
     [SerializeField] private float enemyMaxTop = 40;
     [SerializeField] private float enemyMaxBottom = -5;
-    [SerializeField] private Text asteroidsLabel;
-    [SerializeField] private Text shipsLabel;
+    [SerializeField] private Text scoreLabel;
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
+    private int score = 0;
     private int asteroidsMissed = 0;
     private int shipsMissed = 0;
     private bool shipDamaged = false;
@@ -32,20 +32,22 @@ public class GameManager : Singleton<GameManager>
     public int AsteroidsCount
     {
         get { return asteroidsCount; }
-        set
-        {
-            asteroidsCount = value;
-            asteroidsLabel.text = string.Format("Asteroids: {0}", asteroidsCount);
-        }
+        set { asteroidsCount = value; }
     }
 
     public int ShipsCount
     {
         get { return shipsCount; }
+        set { shipsCount = value; }
+    }
+
+    public int Score
+    {
+        get { return score; }
         set
         {
-            shipsCount = value;
-            shipsLabel.text = string.Format("Ships: {0}", shipsCount);
+            score = value;
+            scoreLabel.text = string.Format("Score: {0}", score);
         }
     }
 
@@ -69,8 +71,8 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnEnemy()
     {
-        //Enemy enemy = Instantiate(enemies[enemies.Count -1]);
-        Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
+        Enemy enemy = Instantiate(enemies[enemies.Count -2]);
+        //Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
         Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
         enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
         enemyCount++;

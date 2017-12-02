@@ -5,6 +5,7 @@ using UnityEngine;
 public class EffectSystem : Singleton<EffectSystem> {
 
     public Dictionary<string, BaseEffect> effects;
+    [SerializeField] List<BaseEffect> exsitingEffects;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,14 @@ public class EffectSystem : Singleton<EffectSystem> {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		foreach (BaseEffect effect in exsitingEffects)
+        {
+            bool? meetCondition = effect.Condition();
+            if ( meetCondition.HasValue && meetCondition.Value == true )
+            {
+                AddEffect(effect);
+            }
+        }
 	}
 
     public void AddEffect(BaseEffect effect)
