@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
@@ -33,6 +34,12 @@ public class Enemy : MonoBehaviour {
             meshRenderer.enabled = false;
         if (collider != null)
             collider.enabled = false;
+
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+        {
+            Destroy(canvas.gameObject);
+        }
     }
 
     protected void ExplodeIfKilled()

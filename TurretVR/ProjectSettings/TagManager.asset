@@ -16,6 +16,7 @@ TagManager:
   - ReduceSpeeedDebuf
   - SpeedBurst
   - PowerBurst
+  - GunLeft
   layers:
   - Default
   - TransparentFX

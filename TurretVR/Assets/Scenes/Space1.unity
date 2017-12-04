@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.366013, g: 0.37092346, b: 0.3445239, a: 1}
+  m_IndirectSpecularColor: {r: 0.4425913, g: 0.4916941, b: 0.5715154, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -170,13 +170,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 88848}
-  m_LocalRotation: {x: 0.9346926, y: 0.01143224, z: -0.35515088, w: -0.009322232}
-  m_LocalPosition: {x: 11.93, y: -6.12, z: 33.54}
+  m_LocalRotation: {x: 0.8244483, y: -0.03485383, z: -0.1704136, w: 0.53854394}
+  m_LocalPosition: {x: 11.93, y: 18.81, z: 33.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 180.533, y: 41.617996, z: -1.6040039}
+  m_LocalEulerAnglesHint: {x: 118.82199, y: 41.356995, z: 29.996994}
 --- !u!1 &129076360
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +557,10 @@ Prefab:
       propertyPath: CannonRight
       value: 
       objectReference: {fileID: 160883176}
+    - target: {fileID: 1715270308717046, guid: 8fd5de9f519a81a49954c17a442830d7, type: 2}
+      propertyPath: m_TagString
+      value: GunLeft
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fd5de9f519a81a49954c17a442830d7, type: 2}
   m_IsPrefabParent: 0
