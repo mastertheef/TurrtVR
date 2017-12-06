@@ -33,7 +33,7 @@ public abstract class BaseEffect : MonoBehaviour
         {
             RevertEffect();
             Destroy(instance);
-            //Destroy(this);
+            Destroy(this);
         }
     }
 
@@ -66,5 +66,8 @@ public abstract class BaseEffect : MonoBehaviour
         return null;
     }
     protected abstract void SetEffect();
-    protected abstract void RevertEffect();
+    protected virtual void RevertEffect()
+    {
+        EffectSystem.Instance.effects[this.tag] = null;
+    }
 }

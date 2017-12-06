@@ -72,6 +72,7 @@ public class GameManager : Singleton<GameManager>
     {
         InvokeRepeating("GameCountDown", 0, 1);
         countdown = gameDuration;
+        score = 0;
         StartCoroutine(Spawn());
     }
 
@@ -83,11 +84,14 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnEnemy()
     {
-        Enemy enemy = Instantiate(enemies[enemies.Count -1]);
-        //Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
-        Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
-        enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
-        enemyCount++;
+        if (countdown > 0)
+        {
+            // Enemy enemy = Instantiate(enemies[enemies.Count - 1]);
+            Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
+            Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
+            enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
+            enemyCount++;
+        }
     }
 
     private IEnumerator Spawn()
@@ -104,9 +108,9 @@ public class GameManager : Singleton<GameManager>
         if (--countdown == 0)
         {
             CancelInvoke("GameCountDown");
-            gameTimerLabel.enabled = false;
+            SceneController.Instance.FadeAndLoadScene("Score");
         };
-        gameTimerLabel.text = GameManager.Instance.NiceTime(countdown);
+        gameTimerLabel.text = NiceTime(countdown);
     }
 
     public string NiceTime(float timer)

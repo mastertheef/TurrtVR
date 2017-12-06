@@ -16,6 +16,7 @@ public class ReduceSpeed : BaseEffect {
 
     protected override void RevertEffect()
     {
+        base.RevertEffect();
         Turret.Instance.ShootCounterPenetration = 0;
         Turret.Instance.RestartIfFiring();
     }

@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] protected float hitPoints = 12;
     [SerializeField] protected float moveSpeed = 0.05f;
     [SerializeField] protected int score = 5;
+    [SerializeField] protected float addSeconds = 1;
+    [SerializeField] protected float reduceSeconds = 1;
 
     protected bool isExploded = false;
 
@@ -40,6 +42,8 @@ public class Enemy : MonoBehaviour {
         {
             Destroy(canvas.gameObject);
         }
+
+        GameManager.Instance.CountDown += addSeconds;
     }
 
     protected void ExplodeIfKilled()

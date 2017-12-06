@@ -54,5 +54,5 @@ MonoBehaviour:
   duration: 7
   Prefab: {fileID: 1950815396793274, guid: 11358f928ad9ac045b12e86f0b9bbd54, type: 2}
   value: 2
-  shipsToKill: 1
+  shipsToKill: 5
   enlargeLaser: 0.07

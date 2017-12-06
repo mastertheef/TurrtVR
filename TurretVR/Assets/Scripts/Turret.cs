@@ -43,7 +43,8 @@ public class Turret : Singleton<Turret>
 
     public bool IsFiring { get { return isFiring; } }
     public bool CanFire { get { return canFire && !isDamaged; } }
-    public bool IsDamaged {
+    public bool IsDamaged
+    {
         get { return isDamaged; }
         set { isDamaged = value; }
     }
@@ -52,7 +53,7 @@ public class Turret : Singleton<Turret>
     {
         get
         {
-            return shootCounter + shootCounterPenetration - ShootCounterSpeedUp;
+            return shootCounter + shootCounterPenetration - shootCounterSpeedUp;
         }
     }
 
@@ -141,16 +142,23 @@ public class Turret : Singleton<Turret>
 
     public void StartFiring()
     {
-        InvokeRepeating("FireLeft", 0, ShootCounter);
-        InvokeRepeating("FireRight", ShootCounter / 2, ShootCounter);
         isFiring = true;
+        if (!IsInvoking("FireLeft"))
+        {
+            InvokeRepeating("FireLeft", 0, ShootCounter);
+
+           
+        }
+        if (!IsInvoking("FireRight"))
+            InvokeRepeating("FireRight", ShootCounter / 2, ShootCounter);
+
     }
 
     public void StopFiring()
     {
+        isFiring = false;
         CancelInvoke("FireLeft");
         CancelInvoke("FireRight");
-        isFiring = false;
     }
 
     private void FireProjectile(GameObject Cannon)

@@ -38,6 +38,7 @@ public class Asteroid : Enemy
         {
             this.Explode();
             EffectSystem.Instance.AddEffect(debuff);
+            GameManager.Instance.CountDown -= reduceSeconds;
         }
     }
 

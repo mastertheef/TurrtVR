@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour {
 
     public float Damage { get { return damage + AddDamage; } }
     public float AddDamage { get; set; }
+    public float ReduceSeconds { get; set; }
 
     private Vector3 startPosition;
     private bool fire = false;
@@ -52,6 +53,7 @@ public class Projectile : MonoBehaviour {
         else if (gameObject.tag == "EnemyLaser" && collision.gameObject.tag == "Player")
         {
             EffectSystem.Instance.AddEffect(debuf);
+            GameManager.Instance.CountDown -= ReduceSeconds;
             Destroy(gameObject);
         }
     }

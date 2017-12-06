@@ -22,7 +22,6 @@ public class SpeedBurst : BaseEffect
 
     protected override void SetEffect()
     {
-        Debug.Log("here" + value.ToString());
         Turret.Instance.ShootCounterSpeedUp = value;
         Turret.Instance.RestartIfFiring();
     }

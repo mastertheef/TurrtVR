@@ -25,9 +25,9 @@ public class PowerBurst : BaseEffect {
 
     protected override void RevertEffect()
     {
+        base.RevertEffect();
         Turret.Instance.ProjectileAdditionalDamage = 0;
         Turret.Instance.ProjectileAdditionalScale = 0;
-
     }
 
     protected override void SetEffect()

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8a7544359d99b4f905ab465c5a4362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 7
+  duration: 5
   Prefab: {fileID: 1666177995665998, guid: db4a3be9257f4fc449e9249301fe59c8, type: 2}
   value: 0.1
   asteroidsToBlow: 3
