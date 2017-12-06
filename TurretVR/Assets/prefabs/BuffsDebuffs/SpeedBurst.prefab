@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 7
-  labelPrefab: {fileID: 114141547425017734, guid: 3ad6718227386b34d857223b08379b1b,
-    type: 2}
+  Prefab: {fileID: 1666177995665998, guid: db4a3be9257f4fc449e9249301fe59c8, type: 2}
   value: 0.1
   asteroidsToBlow: 3

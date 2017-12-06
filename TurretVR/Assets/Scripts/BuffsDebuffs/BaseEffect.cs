@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class BaseEffect : MonoBehaviour
 {
     [SerializeField] protected float duration = 3f;
-    [SerializeField] protected Text labelPrefab;
+    [SerializeField] protected GameObject Prefab;
+    private GameObject instance;
     protected Text label;
     public float Ttl { get; set; }
 
@@ -16,7 +18,8 @@ public abstract class BaseEffect : MonoBehaviour
     protected void Start()
     {
         var ui = GameObject.FindGameObjectWithTag("Canvas").transform;
-        label = Instantiate(labelPrefab, ui);
+        instance = Instantiate(Prefab, ui);
+        label = instance.GetComponentsInChildren<Text>().Where(x => x.name == "Timer").FirstOrDefault();
 
         SetEffect();
         Ttl = duration;
@@ -29,7 +32,8 @@ public abstract class BaseEffect : MonoBehaviour
         if (Ttl <= 0)
         {
             RevertEffect();
-            Destroy(gameObject);
+            Destroy(instance);
+            //Destroy(this);
         }
     }
 
@@ -54,7 +58,7 @@ public abstract class BaseEffect : MonoBehaviour
             CancelInvoke("CountDown");
             label.enabled = false;
         };
-        label.text = string.Format(timerText, Ttl.ToString());
+        label.text = GameManager.Instance.NiceTime(Ttl);
     }
 
     public virtual bool? Condition()

@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float spawnDistance = 500f;
     [SerializeField] private float firstShootDistance = 400f;
     [SerializeField] private float secondShootDistance = 200f;
+    [SerializeField] private float gameDuration = 90f;
 
     [SerializeField] private float spawnDelay = 2f;
 
@@ -21,6 +22,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float enemyMaxTop = 40;
     [SerializeField] private float enemyMaxBottom = -5;
     [SerializeField] private Text scoreLabel;
+    [SerializeField] private Text gameTimerLabel;
+
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
@@ -28,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     private int asteroidsMissed = 0;
     private int shipsMissed = 0;
     private bool shipDamaged = false;
+    private float countdown;
 
     public int AsteroidsCount
     {
@@ -39,6 +43,12 @@ public class GameManager : Singleton<GameManager>
     {
         get { return shipsCount; }
         set { shipsCount = value; }
+    }
+
+    public float CountDown
+    {
+        get { return countdown; }
+        set { countdown = value; }
     }
 
     public int Score
@@ -60,6 +70,8 @@ public class GameManager : Singleton<GameManager>
     // Use this for initialization
     void Start()
     {
+        InvokeRepeating("GameCountDown", 0, 1);
+        countdown = gameDuration;
         StartCoroutine(Spawn());
     }
 
@@ -85,5 +97,22 @@ public class GameManager : Singleton<GameManager>
             SpawnEnemy();
             yield return new WaitForSeconds(spawnDelay);
         }
+    }
+
+    private void GameCountDown()
+    {
+        if (--countdown == 0)
+        {
+            CancelInvoke("GameCountDown");
+            gameTimerLabel.enabled = false;
+        };
+        gameTimerLabel.text = GameManager.Instance.NiceTime(countdown);
+    }
+
+    public string NiceTime(float timer)
+    {
+        int minutes = Mathf.FloorToInt(timer / 60F);
+        int seconds = Mathf.FloorToInt(timer - minutes * 60);
+        return string.Format("{0:0}:{1:00}", minutes, seconds);
     }
 }

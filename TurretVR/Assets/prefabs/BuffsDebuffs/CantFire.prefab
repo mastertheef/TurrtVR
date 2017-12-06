@@ -52,5 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  labelPrefab: {fileID: 114141547425017734, guid: 59c6453c0400af846aa370286c02372c,
-    type: 2}
+  Prefab: {fileID: 1183829299428246, guid: dca73326071195148b371a69d687e31b, type: 2}

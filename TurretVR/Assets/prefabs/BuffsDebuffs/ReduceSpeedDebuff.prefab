@@ -52,6 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  labelPrefab: {fileID: 114455294648212066, guid: 5952eddc77ecdf846a94b4f3752b691d,
-    type: 2}
+  Prefab: {fileID: 1825411779857968, guid: f3da5fa6b3eeda440b7eed3e8cf72d98, type: 2}
   speedReduction: 0.15

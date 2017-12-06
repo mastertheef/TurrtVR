@@ -52,8 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 7
-  labelPrefab: {fileID: 114141547425017734, guid: 2f52149d4fce50b41a0e3c925f6c1aad,
-    type: 2}
+  Prefab: {fileID: 1950815396793274, guid: 11358f928ad9ac045b12e86f0b9bbd54, type: 2}
   value: 2
   shipsToKill: 1
   enlargeLaser: 0.07
