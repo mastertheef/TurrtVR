@@ -31,7 +31,6 @@ public class GameManager : Singleton<GameManager>
     private int asteroidsMissed = 0;
     private int shipsMissed = 0;
     private bool shipDamaged = false;
-    private float countdown;
 
     public int AsteroidsCount
     {
@@ -45,11 +44,7 @@ public class GameManager : Singleton<GameManager>
         set { shipsCount = value; }
     }
 
-    public float CountDown
-    {
-        get { return countdown; }
-        set { countdown = value; }
-    }
+    public float CountDown { get; set; }
 
     public int Score
     {
@@ -71,7 +66,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         InvokeRepeating("GameCountDown", 0, 1);
-        countdown = gameDuration;
+        CountDown = gameDuration;
         score = 0;
         StartCoroutine(Spawn());
     }
@@ -84,7 +79,7 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnEnemy()
     {
-        if (countdown > 0)
+        if (CountDown > 0)
         {
             // Enemy enemy = Instantiate(enemies[enemies.Count - 1]);
             Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
@@ -105,12 +100,13 @@ public class GameManager : Singleton<GameManager>
 
     private void GameCountDown()
     {
-        if (--countdown == 0)
+        if (--CountDown == 0)
         {
             CancelInvoke("GameCountDown");
+            SceneController.Instance.FinalScore = Score;
             SceneController.Instance.FadeAndLoadScene("Score");
         };
-        gameTimerLabel.text = NiceTime(countdown);
+        gameTimerLabel.text = NiceTime(CountDown);
     }
 
     public string NiceTime(float timer)

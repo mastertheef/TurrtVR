@@ -7,9 +7,14 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour {
 
     [SerializeField] GameObject firstButton;
+    [SerializeField] Text ScoreLabel;
         // Use this for initialization
 	void Start () {
         EventSystem.current.SetSelectedGameObject(firstButton);
+        if (ScoreLabel != null)
+        {
+            ScoreLabel.text = string.Format("You: {0}", SceneController.Instance.FinalScore);
+        }
 	}
 	
 	// Update is called once per frame

@@ -12,6 +12,8 @@ public class SceneController : Singleton<SceneController> {
     public float fadeDuration = 1f;
     public string startingSceneName = "StartScreen";
 
+    public float FinalScore { get; set; }
+
     private bool isFading;
     private IEnumerator Start()
     {

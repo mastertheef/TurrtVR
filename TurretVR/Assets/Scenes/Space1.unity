@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44259143, g: 0.49169338, b: 0.5715148, a: 1}
+  m_IndirectSpecularColor: {r: 0.4425913, g: 0.4916941, b: 0.5715154, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   spawnDistance: 500
   firstShootDistance: 400
   secondShootDistance: 200
-  gameDuration: 90
+  gameDuration: 20
   spawnDelay: 5
   enemyMaxLeft: -60
   enemyMaxRight: 60

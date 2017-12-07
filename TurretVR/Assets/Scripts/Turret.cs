@@ -10,6 +10,7 @@ public class Turret : Singleton<Turret>
     [SerializeField] private GameObject CannonRight;
     [SerializeField] private GameObject FireStartEffect;
     [SerializeField] private float shootCounter;
+    [SerializeField] private float shootDelay = 3;
 
     private float shootCounterPenetration = 0;
     private float shootCounterSpeedUp = 0;
@@ -18,10 +19,9 @@ public class Turret : Singleton<Turret>
     private GameObject fireStartLeft;
     private GameObject fireStartRight;
 
-    private bool canFire;
-    private bool startedFiring;
-    private bool isFiring;
-    private bool isDamaged;
+    private bool canFire = true;
+    private bool isFiring = false;
+    private bool isDamaged = false;
 
     public float ShootCounterPenetration
     {
@@ -71,17 +71,17 @@ public class Turret : Singleton<Turret>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
-        {
-            if (!startedFiring)
-            {
-                StartCoroutine(PlayStartShootAndWait());
-            }
-        }
+        
     }
 
     private void FixedUpdate()
     {
+        if (Input.GetButton("Fire1") && CanFire && !isFiring)
+        {
+            StartCoroutine(PlayStartShootAndWait());
+            StartFiring(shootDelay);
+        }
+
         if (Input.GetButtonUp("Fire1"))
         {
             AudioSource audioSource = GetComponent<AudioSource>();
@@ -89,29 +89,18 @@ public class Turret : Singleton<Turret>
             {
                 audioSource.Stop();
                 DestroyFireStart();
+                StopCoroutine(PlayStartShootAndWait());
             }
-            if (CanFire) { StopCoroutine(PlayStartShootAndWait()); }
-            startedFiring = false;
-            canFire = false;
             StopFiring();
-        }
-
-        if (Input.GetButton("Fire1") && CanFire && !isFiring)
-        {
-            StartFiring();
         }
     }
 
     private IEnumerator PlayStartShootAndWait()
     {
-        startedFiring = true;
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(audioSource.clip);
-        canFire = false;
-
         ShowFireStart();
-        yield return new WaitForSeconds(3);
-        canFire = true;
+        yield return new WaitForSeconds(shootDelay);
         DestroyFireStart();
     }
 
@@ -140,17 +129,13 @@ public class Turret : Singleton<Turret>
         }
     }
 
-    public void StartFiring()
+    public void StartFiring(float delay = 0)
     {
         isFiring = true;
         if (!IsInvoking("FireLeft"))
-        {
-            InvokeRepeating("FireLeft", 0, ShootCounter);
-
-           
-        }
+            InvokeRepeating("FireLeft", delay, ShootCounter);
         if (!IsInvoking("FireRight"))
-            InvokeRepeating("FireRight", ShootCounter / 2, ShootCounter);
+            InvokeRepeating("FireRight", delay + ShootCounter / 2, ShootCounter);
 
     }
 
