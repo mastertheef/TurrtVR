@@ -79,14 +79,14 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnEnemy()
     {
-        //if (CountDown > 0)
-        //{
-        //    // Enemy enemy = Instantiate(enemies[enemies.Count - 1]);
-        //    Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
-        //    Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
-        //    enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
-        //    enemyCount++;
-        //}
+        if (CountDown > 0)
+        {
+            // Enemy enemy = Instantiate(enemies[enemies.Count - 1]);
+            Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
+            Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
+            enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
+            enemyCount++;
+        }
     }
 
     private IEnumerator Spawn()
