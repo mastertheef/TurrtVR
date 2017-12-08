@@ -17,6 +17,7 @@ TagManager:
   - SpeedBurst
   - PowerBurst
   - GunLeft
+  - LaserBeam
   layers:
   - Default
   - TransparentFX

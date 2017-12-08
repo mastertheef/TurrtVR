@@ -9,6 +9,9 @@ public class Turret : Singleton<Turret>
     [SerializeField] private GameObject CannonLeft;
     [SerializeField] private GameObject CannonRight;
     [SerializeField] private GameObject FireStartEffect;
+
+    [SerializeField] private LaserBeam LaserBeam;
+
     [SerializeField] private float shootCounter;
     [SerializeField] private float shootDelay = 3;
 
@@ -22,6 +25,9 @@ public class Turret : Singleton<Turret>
     private bool canFire = true;
     private bool isFiring = false;
     private bool isDamaged = false;
+    private bool laserBeamStarted = false;
+
+    private List<LaserBeam> laserBeams;
 
     public float ShootCounterPenetration
     {
@@ -71,27 +77,37 @@ public class Turret : Singleton<Turret>
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
     {
         if (Input.GetButton("Fire1") && CanFire && !isFiring)
         {
-            StartCoroutine(PlayStartShootAndWait());
-            StartFiring(shootDelay);
+            // StartCoroutine(PlayStartShootAndWait());
+            StartFiring();
         }
 
         if (Input.GetButtonUp("Fire1"))
         {
-            AudioSource audioSource = GetComponent<AudioSource>();
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-                DestroyFireStart();
-                StopCoroutine(PlayStartShootAndWait());
-            }
+            //AudioSource audioSource = GetComponent<AudioSource>();
+            //if (audioSource.isPlaying)
+            //{
+            //    audioSource.Stop();
+            //    DestroyFireStart();
+            //    StopCoroutine(PlayStartShootAndWait());
+            //}
             StopFiring();
+        }
+
+        if (Input.GetButton("Fire2") && !laserBeamStarted)
+        {
+            StartLaserBeam();
+        }
+
+        if (Input.GetButtonUp("Fire2") && laserBeamStarted)
+        {
+            StopLaserBeam();
         }
     }
 
@@ -144,6 +160,15 @@ public class Turret : Singleton<Turret>
         isFiring = false;
         CancelInvoke("FireLeft");
         CancelInvoke("FireRight");
+
+        StartCoroutine(ShootingDelay());
+    }
+
+    private IEnumerator ShootingDelay()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(ShootCounter);
+        canFire = true;
     }
 
     private void FireProjectile(GameObject Cannon)
@@ -171,5 +196,20 @@ public class Turret : Singleton<Turret>
     {
         proj.AddDamage = ProjectileAdditionalDamage;
         proj.transform.localScale += new Vector3(ProjectileAdditionalScale, ProjectileAdditionalScale, ProjectileAdditionalScale);
+    }
+
+    private void StartLaserBeam()
+    {
+        laserBeams = laserBeams ?? new List<LaserBeam>();
+        laserBeams.Add(Instantiate(LaserBeam, CannonLeft.transform));
+        laserBeams.Add(Instantiate(LaserBeam, CannonRight.transform));
+        laserBeamStarted = true;
+    }
+
+    private void StopLaserBeam()
+    {
+        laserBeamStarted = false;
+        laserBeams.ForEach(x => StartCoroutine(x.SelfDestruct()));
+        laserBeams.Clear();
     }
 }
