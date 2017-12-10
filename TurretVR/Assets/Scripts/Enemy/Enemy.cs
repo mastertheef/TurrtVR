@@ -26,24 +26,33 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void Explode()
     {
-        var exp = Instantiate(explosion, gameObject.transform);
-        exp.transform.position = gameObject.transform.position;
-        isExploded = true;
-        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        Collider collider = GetComponent<Collider>();
-
-        if (meshRenderer != null)
-            meshRenderer.enabled = false;
-        if (collider != null)
-            collider.enabled = false;
-
-        Canvas canvas = GetComponentInChildren<Canvas>();
-        if (canvas != null)
+        if (!isExploded)
         {
-            Destroy(canvas.gameObject);
-        }
+            var exp = Instantiate(explosion, gameObject.transform);
+            exp.transform.position = gameObject.transform.position;
+            isExploded = true;
+            MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+            Collider collider = GetComponent<Collider>();
 
-        GameManager.Instance.CountDown += addSeconds;
+            if (meshRenderer != null)
+                meshRenderer.enabled = false;
+            if (collider != null)
+                collider.enabled = false;
+
+            Canvas canvas = GetComponentInChildren<Canvas>();
+            if (canvas != null)
+            {
+                Destroy(canvas.gameObject);
+            }
+
+            GameManager.Instance.CountDown += addSeconds;
+            GameManager.Instance.Score += score;
+        }
+    }
+
+    public void DestroyIt()
+    {
+        this.Explode();
     }
 
     protected void ExplodeIfKilled()
@@ -51,7 +60,7 @@ public class Enemy : MonoBehaviour {
         if (hitPoints <= 0 && !isExploded)
         {
             Explode();
-            GameManager.Instance.Score += score;
+            
         }
     }
 

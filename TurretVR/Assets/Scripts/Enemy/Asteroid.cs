@@ -42,6 +42,7 @@ public class Asteroid : Enemy
         }
     }
 
+    
     private IEnumerator MoveToPlayer()
     {
         while(!isExploded)
@@ -55,5 +56,10 @@ public class Asteroid : Enemy
     {
         base.Explode();
         GameManager.Instance.AsteroidsCount++;
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Explode();
     }
 }

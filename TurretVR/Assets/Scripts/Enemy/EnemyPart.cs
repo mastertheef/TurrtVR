@@ -11,4 +11,9 @@ public class EnemyPart : MonoBehaviour {
             transform.parent.gameObject.GetComponent<EnemyShip>().TakeDamage(other.collider);
         }
     }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        transform.parent.gameObject.GetComponent<EnemyShip>().Die();
+    }
 }

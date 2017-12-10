@@ -60,6 +60,11 @@ public class EnemyShip : Enemy {
         l.Fire();
     }
 
+    public void Die()
+    {
+        Explode();
+    }
+
     private void FixedUpdate()
     {
         if (canShoot && !isExploded && !isBehind())

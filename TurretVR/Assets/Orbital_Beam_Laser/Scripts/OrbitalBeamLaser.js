@@ -62,17 +62,14 @@ function Update ()
 
 function LaserChargeWait ()
 {
-
     // Wait for laser to charge
-    
-
     if (LaserChargeFlag == 0)
     {
         LaserEffects.SetActive(true);
         LaserSparksEmitter.enabled = true;
         LaserSmokeEmitter.enabled = true;
         LaserAudio.Play();
-        // yield WaitForSeconds (0.2);
+        yield WaitForSeconds (0.2);
         ScorchMark.SetActive(true);
         LaserChargeFlag = 0;
     }
