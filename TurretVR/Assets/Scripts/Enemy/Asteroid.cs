@@ -40,9 +40,19 @@ public class Asteroid : Enemy
             EffectSystem.Instance.AddEffect(debuff);
             GameManager.Instance.CountDown -= reduceSeconds;
         }
+
+        
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "LaserBeam")
+        {
+            Explode();
+        }
+    }
+
+
     private IEnumerator MoveToPlayer()
     {
         while(!isExploded)

@@ -88,7 +88,7 @@ public class Turret : Singleton<Turret>
             StartFiring();
         }
 
-        if (Input.GetButtonUp("Fire1"))
+        if (!Input.GetButton("Fire1"))
         {
             //AudioSource audioSource = GetComponent<AudioSource>();
             //if (audioSource.isPlaying)
@@ -100,15 +100,6 @@ public class Turret : Singleton<Turret>
             StopFiring();
         }
 
-        if (Input.GetButton("Fire2") && !laserBeamStarted)
-        {
-            StartLaserBeam();
-        }
-
-        if (Input.GetButtonUp("Fire2") && laserBeamStarted)
-        {
-            StopLaserBeam();
-        }
     }
 
     private IEnumerator PlayStartShootAndWait()
@@ -196,20 +187,5 @@ public class Turret : Singleton<Turret>
     {
         proj.AddDamage = ProjectileAdditionalDamage;
         proj.transform.localScale += new Vector3(ProjectileAdditionalScale, ProjectileAdditionalScale, ProjectileAdditionalScale);
-    }
-
-    private void StartLaserBeam()
-    {
-        laserBeams = laserBeams ?? new List<LaserBeam>();
-        laserBeams.Add(Instantiate(LaserBeam, CannonLeft.transform));
-        laserBeams.Add(Instantiate(LaserBeam, CannonRight.transform));
-        laserBeamStarted = true;
-    }
-
-    private void StopLaserBeam()
-    {
-        laserBeamStarted = false;
-        laserBeams.ForEach(x => StartCoroutine(x.SelfDestruct()));
-        laserBeams.Clear();
     }
 }
