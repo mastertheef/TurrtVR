@@ -81,8 +81,8 @@ public class GameManager : Singleton<GameManager>
     {
         if (CountDown > 0)
         {
-            // Enemy enemy = Instantiate(enemies[enemies.Count - 1]);
-            Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
+             Enemy enemy = Instantiate(enemies[enemies.Count - 2]);
+            //Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
             Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
             enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
             enemyCount++;

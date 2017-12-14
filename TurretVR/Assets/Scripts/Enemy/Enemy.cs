@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour {
 
     protected bool isExploded = false;
 
+    public bool IsExploded { get { return isExploded; } }
+
    // Use this for initialization
     void Start () {
 		
@@ -68,5 +70,10 @@ public class Enemy : MonoBehaviour {
     {
         var projectile = collider.gameObject.GetComponent<Projectile>();
         hitPoints -= projectile.Damage;
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        hitPoints -= damage;
     }
 }
