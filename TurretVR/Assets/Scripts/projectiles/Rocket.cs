@@ -66,7 +66,8 @@ public class Rocket : Projectile {
         for (int i = allEnemies.Count - 1; i >= 0; i--)
         {
             Vector3 screenPoint = Camera.main.WorldToViewportPoint(allEnemies[i].transform.position);
-            if (!IsOnScreen(screenPoint))
+            bool isExploded = allEnemies[i].GetComponent<Enemy>().IsExploded;
+            if (!IsOnScreen(screenPoint) || isExploded)
             {
                 allEnemies.Remove(allEnemies[i]);
             }
@@ -98,6 +99,11 @@ public class Rocket : Projectile {
     {
         while (GetDistance() < ShotMaxRange)
         {
+            if (target == null || target.GetComponent<Enemy>().IsExploded)
+            {
+                target = FindNearestTarget();
+            }
+
             if (target != null && !target.GetComponent<Enemy>().IsExploded)
             {
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, ShotSpeed * Time.deltaTime);
