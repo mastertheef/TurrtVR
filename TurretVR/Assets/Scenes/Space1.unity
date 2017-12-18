@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44259134, g: 0.49169385, b: 0.571515, a: 1}
+  m_IndirectSpecularColor: {r: 0.4425913, g: 0.4916941, b: 0.5715154, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -184,6 +184,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 129076365}
     m_Modifications:
+    - target: {fileID: 114526180637981876, guid: 8fd5de9f519a81a49954c17a442830d7,
+        type: 2}
+      propertyPath: exsitingEffects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4468821861247068, guid: 8fd5de9f519a81a49954c17a442830d7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 14.6
@@ -252,6 +257,18 @@ Prefab:
       propertyPath: ChargeDuration
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114526180637981876, guid: 8fd5de9f519a81a49954c17a442830d7,
+        type: 2}
+      propertyPath: exsitingEffects.Array.data[0]
+      value: 
+      objectReference: {fileID: 114469680365435306, guid: 4e9434f999de51641827de724956ac66,
+        type: 2}
+    - target: {fileID: 114526180637981876, guid: 8fd5de9f519a81a49954c17a442830d7,
+        type: 2}
+      propertyPath: exsitingEffects.Array.data[1]
+      value: 
+      objectReference: {fileID: 114569543348120062, guid: f66ec31655d96ed41bf9c1c1409f738e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fd5de9f519a81a49954c17a442830d7, type: 2}
   m_IsPrefabParent: 0
