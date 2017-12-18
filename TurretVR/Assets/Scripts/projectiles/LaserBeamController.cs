@@ -71,4 +71,13 @@ public class LaserBeamController : Singleton<LaserBeamController> {
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+    public void AddCharge()
+    {
+        if (LaserCharges < MaxLaserCharges)
+        {
+            LaserCharges++;
+            chargeImages.Add(Instantiate(ChareImagePrefab, ChargesPanel));
+        }
+    }
 }

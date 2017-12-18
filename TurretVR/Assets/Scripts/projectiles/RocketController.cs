@@ -35,4 +35,13 @@ public class RocketController : Singleton<RocketController> {
             Destroy(rocketImage.gameObject);
         }
 	}
+
+    public void AddRocket()
+    {
+        if (RocketCount < MaxRockets)
+        {
+            RocketCount++;
+            rocketImages.Add(Instantiate(RocketImagePrefab, RocketsPanel));
+        }
+    }
 }

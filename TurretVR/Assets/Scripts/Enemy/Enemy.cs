@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] protected int score = 5;
     [SerializeField] protected float addSeconds = 1;
     [SerializeField] protected float reduceSeconds = 1;
+    [SerializeField] private float resorceProbability = 0.1f;
 
     protected bool isExploded = false;
 
@@ -49,6 +50,8 @@ public class Enemy : MonoBehaviour {
 
             GameManager.Instance.CountDown += addSeconds;
             GameManager.Instance.Score += score;
+
+            GiveResource();
         }
     }
 
@@ -75,5 +78,23 @@ public class Enemy : MonoBehaviour {
     public virtual void TakeDamage(float damage)
     {
         hitPoints -= damage;
+    }
+
+    private void GiveResource()
+    {
+        float probe = Random.Range(0f, 1f);
+        Debug.Log(probe);
+        if (probe < resorceProbability)
+        {
+            float choice = Random.Range(0f, 1f);
+            if (choice < 0.5)
+            {
+                LaserBeamController.Instance.AddCharge();
+            }
+            else
+            {
+                RocketController.Instance.AddRocket();
+            }
+        }
     }
 }
