@@ -68,8 +68,6 @@ public class Turret : Singleton<Turret>
     // Use this for initialization
     void Start()
     {
-        Debug.Log(GameObject.FindWithTag("GunLeft").GetComponent<Renderer>().material.shader.name);
-
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }

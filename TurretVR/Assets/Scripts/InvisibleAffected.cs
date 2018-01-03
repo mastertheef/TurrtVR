@@ -7,7 +7,6 @@ public class InvisibleAffected : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        Debug.Log(renderers.Length);
         foreach(Renderer r in renderers)
         {
             r.material.renderQueue = 2503;
