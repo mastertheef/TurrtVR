@@ -59,6 +59,10 @@ public class GameManager : Singleton<GameManager>
     public float SpawnDistance { get { return spawnDistance; } }
     public float FirstShootDistance { get { return firstShootDistance; } }
     public float SecondShootDistance { get { return secondShootDistance; } }
+    public float EnemyMaxLeft { get { return enemyMaxLeft; } }
+    public float EnemyMaxRight { get { return enemyMaxRight; } }
+    public float EnemyMaxTop { get { return enemyMaxTop; } }
+    public float EnemyMaxBottom { get { return enemyMaxBottom; } }
 
     private int enemyCount = 0;
 
@@ -83,15 +87,14 @@ public class GameManager : Singleton<GameManager>
         {
             // Enemy enemy = Instantiate(enemies[enemies.Count - 2]);
             Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
-            Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxLeft, enemyMaxRight), Random.Range(enemyMaxBottom, enemyMaxTop), 0);
+            Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxBottom, enemyMaxTop), Random.Range(enemyMaxLeft, enemyMaxRight),  0);
             enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
-            enemyCount++;
         }
     }
 
     private IEnumerator Spawn()
     {
-        while (enemyCount <= maxEnemies)
+        while (CountDown > 0)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(spawnDelay);

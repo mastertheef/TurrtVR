@@ -1234,6 +1234,14 @@ Prefab:
       propertyPath: moveSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4335132370413006, guid: 92bf2d312524d9242ba351b12571accc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532700304762598, guid: 92bf2d312524d9242ba351b12571accc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92bf2d312524d9242ba351b12571accc, type: 2}
   m_IsPrefabParent: 0

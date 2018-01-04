@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365359848740974}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0, z: -4.390001}
+  m_LocalPosition: {x: 0, y: -0, z: -4.4}
   m_LocalScale: {x: 4.058455, y: 5.7295904, z: 4.694559}
   m_Children: []
   m_Father: {fileID: 4806360132548656}
@@ -82,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1843243949266142}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0.09}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4806360132548656}
@@ -199,7 +199,8 @@ MonoBehaviour:
   PortalPrefab: {fileID: 1169025529230498, guid: 579bbfd2938720c428e260aa55081dc1,
     type: 2}
   shipLength: 12
-  moveSpeed: 5
+  moveSpeed: 10
+  portalOffset: 102
   ship: {fileID: 1843243949266142}
   invisibleCapsule: {fileID: 1365359848740974}
 --- !u!114 &114846894221272282
