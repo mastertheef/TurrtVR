@@ -19,6 +19,8 @@ TagManager:
   - GunLeft
   - LaserBeam
   - EnemyPart
+  - Rocket
+  - Boss
   layers:
   - Default
   - TransparentFX

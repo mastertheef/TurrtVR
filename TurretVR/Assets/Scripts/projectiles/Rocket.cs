@@ -37,7 +37,7 @@ public class Rocket : Projectile {
     private void OnCollisionEnter(Collision collision)
     {
         string colTag = collision.gameObject.tag;
-        if (colTag == "EnemyShip" || colTag == "Asteroid" )
+        if (colTag == "EnemyShip" || colTag == "Asteroid")
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             StartCoroutine(Explode());
@@ -45,6 +45,10 @@ public class Rocket : Projectile {
         else if (colTag == "EnemyPart")
         {
             collision.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
+            StartCoroutine(Explode());
+        }
+        else if (colTag == "Boss")
+        {
             StartCoroutine(Explode());
         }
     }
@@ -55,6 +59,7 @@ public class Rocket : Projectile {
 
         List<GameObject> allEnemies = GameObject.FindGameObjectsWithTag("Asteroid").ToList();
         allEnemies.AddRange(GameObject.FindGameObjectsWithTag("EnemyShip").ToList());
+        allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Boss").ToList());
 
         List<GameObject> allVisible = GetAllOnScreen(allEnemies);
         return GetNearest(allVisible);
@@ -87,7 +92,7 @@ public class Rocket : Projectile {
 
         allVisible.ForEach(x => ranges.Add(Vector3.Distance(Vector3.zero, x.transform.position)));
         int minIndex = ranges.IndexOf(Mathf.Min(ranges.ToArray()));
-        return  allVisible[minIndex];
+        return allVisible[minIndex];
     }
 
     private bool IsOnScreen(Vector3 point)

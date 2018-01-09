@@ -65,7 +65,6 @@ public class Enemy : MonoBehaviour {
         if (hitPoints <= 0 && !isExploded)
         {
             Explode();
-            
         }
     }
 

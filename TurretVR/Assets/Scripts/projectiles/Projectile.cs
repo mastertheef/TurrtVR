@@ -44,7 +44,10 @@ public class Projectile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameObject.tag != "EnemyLaser" && (collision.gameObject.tag == "Asteroid" || collision.gameObject.tag == "EnemyShip"))
+        if (gameObject.tag != "EnemyLaser" && 
+            (collision.gameObject.tag == "Asteroid" || 
+            collision.gameObject.tag == "EnemyShip" ||
+            collision.gameObject.tag == "Boss"))
         {
             var hitPosition = collision.contacts[0].point;
             Instantiate(HitEffect, hitPosition, Quaternion.identity);
