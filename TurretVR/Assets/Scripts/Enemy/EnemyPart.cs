@@ -10,11 +10,9 @@ public class EnemyPart : MonoBehaviour {
         {
             transform.parent.gameObject.GetComponent<EnemyShip>().TakeDamage(other.collider);
         }
-
-        
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnParticleCollision(GameObject other)
     {
         if (other.gameObject.tag == "LaserBeam")
         {

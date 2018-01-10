@@ -82,7 +82,6 @@ public class Enemy : MonoBehaviour {
     private void GiveResource()
     {
         float probe = Random.Range(0f, 1f);
-        Debug.Log(probe);
         if (probe < resorceProbability)
         {
             float choice = Random.Range(0f, 1f);

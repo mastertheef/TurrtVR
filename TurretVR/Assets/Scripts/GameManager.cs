@@ -72,7 +72,7 @@ public class GameManager : Singleton<GameManager>
         InvokeRepeating("GameCountDown", 0, 1);
         CountDown = gameDuration;
         score = 0;
-       // StartCoroutine(Spawn());
+        StartCoroutine(Spawn());
     }
 
     // Update is called once per frame

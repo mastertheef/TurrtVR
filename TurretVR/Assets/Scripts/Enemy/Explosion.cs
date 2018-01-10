@@ -16,6 +16,9 @@ public class Explosion : MonoBehaviour {
 
     private void OnDestroy()
     {
-        Destroy(gameObject.transform.parent.gameObject);
+        if (gameObject.transform.parent != null)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
+        }
     }
 }

@@ -35,5 +35,4 @@ public class LaserBeam : MonoBehaviour
         LaserStopAudio.Play();
         LaserEffects.SetActive(false);
     }
-
 }

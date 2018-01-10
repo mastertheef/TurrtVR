@@ -9,9 +9,11 @@ public class Rocket : Projectile {
     [SerializeField] private Explosion explosion;
     private GameObject target;
     private bool isExploded = false;
+    private float motherShipOffset;
 
 	// Use this for initialization
 	void Start () {
+        motherShipOffset = 0f;
         target = FindNearestTarget();
         if (target != null)
         {
@@ -102,6 +104,7 @@ public class Rocket : Projectile {
 
     protected override IEnumerator Move()
     {
+        
         while (GetDistance() < ShotMaxRange)
         {
             if (target == null || target.GetComponent<Enemy>().IsExploded)
@@ -111,7 +114,15 @@ public class Rocket : Projectile {
 
             if (target != null && !target.GetComponent<Enemy>().IsExploded)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, ShotSpeed * Time.deltaTime);
+                
+                if (target.GetComponentInParent<MotherShip>() != null && motherShipOffset == 0)
+                {
+                    motherShipOffset = Random.Range(50f, 100f);
+                }
+
+                Vector3 targetPosition = new Vector3(target.transform.position.x - motherShipOffset, target.transform.position.y, target.transform.position.z);
+
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, ShotSpeed * Time.deltaTime);
             }
             else
             {

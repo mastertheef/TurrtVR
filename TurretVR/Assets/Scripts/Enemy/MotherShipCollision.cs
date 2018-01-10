@@ -19,8 +19,8 @@ public class MotherShipCollision : MonoBehaviour {
         gameObject.GetComponentInParent<MotherShip>().Collision(collision);
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnParticleCollision(GameObject other)
     {
-        gameObject.GetComponentInParent<MotherShip>().CollisionExit(collision);
+        gameObject.GetComponentInParent<MotherShip>().ParticleCollision(other);
     }
 }

@@ -13,6 +13,7 @@ public class MotherShip : MonoBehaviour {
     [SerializeField] private GameObject PortalPrefab;
     [SerializeField] private GameObject ship;
     [SerializeField] private GameObject invisibleCapsule;
+    [SerializeField] private Explosion ExplosionPrefab;
 
     [SerializeField] private float EnergyShield = 1000f;
     [SerializeField] private float EnergyShieldRechrgeDelay = 2f;
@@ -119,18 +120,6 @@ public class MotherShip : MonoBehaviour {
         }
     }
 
-    private IEnumerator TakeBeamDamage()
-    {
-        while (true)
-        {
-            if (energyShield > 0)
-            {
-                energyShield -= LaserBeamDamage * Time.deltaTime;
-                yield return null;
-            }
-        }
-    }
-
     public void Collision(Collision collision)
     {
         if (collision.gameObject.tag == "Laser" || collision.gameObject.tag == "Rocket")
@@ -145,20 +134,27 @@ public class MotherShip : MonoBehaviour {
             {
                 hitPoints -= damage;
             }
-        }
 
-        if (collision.gameObject.tag == "LaserBeam" && beamDamageCoroutine == null)
-        {
-            beamDamageCoroutine = StartCoroutine(TakeBeamDamage());
+            if (collision.gameObject.tag == "Rocket")
+            {
+                var exp = Instantiate(ExplosionPrefab, collision.contacts[0].point, Quaternion.identity);
+                exp.transform.localScale *= 5; 
+            }
         }
     }
 
-    public void CollisionExit(Collision collision)
+    public void ParticleCollision(GameObject other)
     {
-        if (collision.gameObject.tag == "LaserBeam" && beamDamageCoroutine != null)
+        if (other.gameObject.tag == "LaserBeam")
         {
-            StopCoroutine(beamDamageCoroutine);
-            beamDamageCoroutine = null;
+            if (energyShield > 0)
+            {
+                energyShield -= LaserBeamDamage;
+            }
+            else
+            {
+                hitPoints -= LaserBeamDamage;
+            }
         }
     }
 }

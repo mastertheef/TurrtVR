@@ -41,17 +41,11 @@ public class Asteroid : Enemy
             GameManager.Instance.CountDown -= reduceSeconds;
         }
 
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
         if (other.gameObject.tag == "LaserBeam")
         {
             Explode();
         }
     }
-
 
     private IEnumerator MoveToPlayer()
     {

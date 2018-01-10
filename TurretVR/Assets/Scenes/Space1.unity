@@ -292,9 +292,6 @@ MonoBehaviour:
   - {fileID: 114847823757295296, guid: f1359f427c5d37f4f98fb1754ec4066a, type: 2}
   - {fileID: 114724568798663102, guid: e9d3b9b2b30c7dd499cca4c76a8da579, type: 2}
   - {fileID: 114723558271541370, guid: dc465a89d16be854792e2092250f2c14, type: 2}
-  - {fileID: 114348471222700792, guid: bb372ebe7dae7694e90fd428b1a635e0, type: 2}
-  - {fileID: 114821942993336610, guid: f5218fa61416c0046aa29be17a6e0791, type: 2}
-  - {fileID: 114635963632962484, guid: f51da92576e4cb14ebbe4ea64dc41099, type: 2}
   - {fileID: 114430997070385602, guid: 47781772f22b9fe448f32db1ce60e3b0, type: 2}
   - {fileID: 114715953024307394, guid: c8b49426555b5744f968ccab93a0ebca, type: 2}
   maxEnemies: 20
@@ -348,16 +345,50 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114505134408973886, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: ChargesPanel
-      value: 
-      objectReference: {fileID: 619768640}
     - target: {fileID: 114248843749761642, guid: 797b2f9c77876b042aebb9d88081f55c,
         type: 2}
       propertyPath: RocketsPanel
       value: 
       objectReference: {fileID: 1028227749}
+    - target: {fileID: 114505134408973886, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: ChargesPanel
+      value: 
+      objectReference: {fileID: 619768640}
+    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: CollisionModule.maxKillSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 198048956229312064, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 54081559323817650, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950676723413796, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
   m_IsPrefabParent: 0
@@ -610,7 +641,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1843243949266142, guid: 92bf2d312524d9242ba351b12571accc,
     type: 2}
   m_PrefabInternal: {fileID: 2127284667}
---- !u!114 &484246217
+--- !u!114 &484246224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1290,11 +1321,32 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1073534513363824, guid: 92bf2d312524d9242ba351b12571accc, type: 2}
       propertyPath: m_TagString
-      value: Boss
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1843243949266142, guid: 92bf2d312524d9242ba351b12571accc, type: 2}
       propertyPath: m_TagString
-      value: Untagged
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 114508398236526044, guid: 92bf2d312524d9242ba351b12571accc,
+        type: 2}
+      propertyPath: ExplosionPrefab
+      value: 
+      objectReference: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
+        type: 2}
+    - target: {fileID: 54380820309333246, guid: 92bf2d312524d9242ba351b12571accc,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54380820309333246, guid: 92bf2d312524d9242ba351b12571accc,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114508398236526044, guid: 92bf2d312524d9242ba351b12571accc,
+        type: 2}
+      propertyPath: LaserBeamDamage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92bf2d312524d9242ba351b12571accc, type: 2}
