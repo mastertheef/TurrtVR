@@ -20,6 +20,10 @@ public class MotherShip : MonoBehaviour {
     [SerializeField] private float EnergyShieldRestoreSpeed = 10f;
     [SerializeField] private float Hitpoints = 5000f;
     [SerializeField] private float LaserBeamDamage = 5f;
+    [SerializeField] private int ScorePoints = 200;
+    [SerializeField] private int addSeconds = 20;
+    [SerializeField] private int dieExplosionsCount = 30;
+    [SerializeField] private float dieExplosionScale = 15;
 
     [SerializeField] Image ShieldBar;
     [SerializeField] Image HeathBar;
@@ -27,11 +31,12 @@ public class MotherShip : MonoBehaviour {
 
     private bool started = false;
     private bool visible = false;
+    private bool isDead = false;
     private Vector3 invisibleCapsuleDefaultPosition;
     private GameObject portal;
-    [SerializeField] private float energyShield;
-    [SerializeField] private float hitPoints;
-    private Coroutine beamDamageCoroutine;
+    private float energyShield;
+    private float hitPoints;
+    private Coroutine teleporting;
 
 
 	// Use this for initialization
@@ -45,7 +50,7 @@ public class MotherShip : MonoBehaviour {
     {
         if (!started)
         {
-            StartCoroutine(Teleporting());
+           teleporting = StartCoroutine(Teleporting());
         }
     }
 
@@ -140,6 +145,12 @@ public class MotherShip : MonoBehaviour {
                 var exp = Instantiate(ExplosionPrefab, collision.contacts[0].point, Quaternion.identity);
                 exp.transform.localScale *= 5; 
             }
+
+            if (hitPoints <= 0)
+            {
+                hitPoints = 0;
+                StartCoroutine(Die());
+            }
         }
     }
 
@@ -155,6 +166,44 @@ public class MotherShip : MonoBehaviour {
             {
                 hitPoints -= LaserBeamDamage;
             }
+
+            if (hitPoints <= 0)
+            {
+                hitPoints = 0;
+                StartCoroutine(Die());
+            }
         }
+    }
+
+    private IEnumerator Die()
+    {
+        if (!isDead)
+        {
+            StopCoroutine(teleporting);
+            invisibleCapsule.GetComponent<MeshRenderer>().enabled = false;
+            ship.GetComponent<Collider>().enabled = false;
+
+            isDead = true;
+            for (int i = 0; i < dieExplosionsCount; i++)
+            {
+                var point = GetRandomSurfacePoint();
+                var explosion = Instantiate(ExplosionPrefab, point, Quaternion.identity);
+                explosion.transform.localScale *= dieExplosionScale;
+                yield return new WaitForSeconds(0.2f);
+            }
+
+            ship.GetComponent<MeshRenderer>().enabled = false;
+            GameManager.Instance.Score += ScorePoints;
+            GameManager.Instance.CountDown += addSeconds;
+
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
+        }
+    }
+
+    private Vector3 GetRandomSurfacePoint()
+    {
+        Vector3[] vertices = ship.GetComponent<MeshFilter>().mesh.vertices;
+        return ship.transform.TransformPoint(vertices[Random.Range(0, vertices.Length - 1)]);
     }
 }
