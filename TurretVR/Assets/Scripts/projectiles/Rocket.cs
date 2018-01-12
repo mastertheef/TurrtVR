@@ -73,8 +73,9 @@ public class Rocket : Projectile {
         for (int i = allEnemies.Count - 1; i >= 0; i--)
         {
             Vector3 screenPoint = Camera.main.WorldToViewportPoint(allEnemies[i].transform.position);
-            bool isExploded = allEnemies[i].GetComponent<Enemy>().IsExploded;
-            if (!IsOnScreen(screenPoint) || isExploded)
+            var enemy = allEnemies[i].GetComponent<Enemy>();
+
+            if (enemy != null || !IsOnScreen(screenPoint) || enemy.IsExploded)
             {
                 allEnemies.Remove(allEnemies[i]);
             }

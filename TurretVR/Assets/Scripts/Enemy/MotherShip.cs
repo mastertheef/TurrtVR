@@ -24,6 +24,10 @@ public class MotherShip : MonoBehaviour {
     [SerializeField] private int addSeconds = 20;
     [SerializeField] private int dieExplosionsCount = 30;
     [SerializeField] private float dieExplosionScale = 15;
+    [SerializeField] private float rocketLaunchDelay = 0.7f;
+
+    [SerializeField] private List<GameObject> rocketCannons;
+    [SerializeField] private BossRocket rocket;
 
     [SerializeField] Image ShieldBar;
     [SerializeField] Image HeathBar;
@@ -117,7 +121,11 @@ public class MotherShip : MonoBehaviour {
             StartCoroutine(MoveIn());
             while (!visible) { yield return null; }
 
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3);
+
+            StartCoroutine(Shoot());
+            yield return new WaitForSeconds(2);
+
             StartCoroutine(MoveOut());
             while (visible) { yield return null; }
 
@@ -206,4 +214,16 @@ public class MotherShip : MonoBehaviour {
         Vector3[] vertices = ship.GetComponent<MeshFilter>().mesh.vertices;
         return ship.transform.TransformPoint(vertices[Random.Range(0, vertices.Length - 1)]);
     }
+
+    private IEnumerator Shoot()
+    {
+        foreach (var cannon in rocketCannons)
+        {
+            var r = Instantiate(rocket, cannon.transform.position, Quaternion.identity);
+            r.ReduceSeconds = 5;
+            r.Fire();
+            yield return new WaitForSeconds(rocketLaunchDelay);
+        }
+    }
+
 }

@@ -21,6 +21,7 @@ TagManager:
   - EnemyPart
   - Rocket
   - Boss
+  - BossRocket
   layers:
   - Default
   - TransparentFX

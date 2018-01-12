@@ -24,12 +24,15 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Text scoreLabel;
     [SerializeField] private Text gameTimerLabel;
 
+    [SerializeField] private MotherShip MotherShipPrefab;
+
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
     private int score = 0;
     private int asteroidsMissed = 0;
     private int shipsMissed = 0;
+    private int gameTime;
     private bool shipDamaged = false;
 
     public int AsteroidsCount
@@ -64,6 +67,8 @@ public class GameManager : Singleton<GameManager>
     public float EnemyMaxTop { get { return enemyMaxTop; } }
     public float EnemyMaxBottom { get { return enemyMaxBottom; } }
 
+    private bool mothershipSpawned;
+
     private int enemyCount = 0;
 
     // Use this for initialization
@@ -96,13 +101,20 @@ public class GameManager : Singleton<GameManager>
     {
         while (CountDown > 0)
         {
-            SpawnEnemy();
+            if (gameTime >= 0 && !mothershipSpawned) // 30 seconds of game
+            {
+                Instantiate(MotherShipPrefab);
+                mothershipSpawned = true;
+            }
+
+           // SpawnEnemy();
             yield return new WaitForSeconds(spawnDelay);
         }
     }
 
     private void GameCountDown()
     {
+        gameTime++;
         if (--CountDown == 0)
         {
             CancelInvoke("GameCountDown");
