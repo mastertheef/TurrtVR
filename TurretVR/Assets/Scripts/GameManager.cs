@@ -15,8 +15,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float secondShootDistance = 200f;
     [SerializeField] private float gameDuration = 90f;
 
-    [SerializeField] private float spawnDelay = 2f;
-
+    [SerializeField] private float[] spawnDelayRange = new float[2] { 1, 5 };
+    [SerializeField] private float spawnDelayAfterBoss = 20;
+ 
     [SerializeField] private float enemyMaxLeft = -60;
     [SerializeField] private float enemyMaxRight = 60;
     [SerializeField] private float enemyMaxTop = 40;
@@ -78,6 +79,7 @@ public class GameManager : Singleton<GameManager>
         CountDown = gameDuration;
         score = 0;
         StartCoroutine(Spawn());
+        mothershipSpawned = true;
     }
 
     // Update is called once per frame
@@ -90,7 +92,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (CountDown > 0)
         {
-            // Enemy enemy = Instantiate(enemies[enemies.Count - 2]);
+            //Enemy enemy = Instantiate(enemies[enemies.Count - 2]);
             Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
             Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxBottom, enemyMaxTop), Random.Range(enemyMaxLeft, enemyMaxRight),  0);
             enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
@@ -101,13 +103,15 @@ public class GameManager : Singleton<GameManager>
     {
         while (CountDown > 0)
         {
-            if (gameTime >= 0 && !mothershipSpawned) // 30 seconds of game
+            if (gameTime >= 30 && !mothershipSpawned) // 30 seconds of game
             {
                 Instantiate(MotherShipPrefab);
                 mothershipSpawned = true;
+                yield return new WaitForSeconds(spawnDelayAfterBoss);
             }
 
-           // SpawnEnemy();
+            SpawnEnemy();
+            float spawnDelay = Random.Range(spawnDelayRange[0], spawnDelayRange[1]);
             yield return new WaitForSeconds(spawnDelay);
         }
     }

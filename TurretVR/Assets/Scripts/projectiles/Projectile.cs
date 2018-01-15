@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         if ((gameObject.tag != "EnemyLaser" && gameObject.tag != "BossRocket") && 
             (collision.gameObject.tag == "Asteroid" || 

@@ -299,11 +299,14 @@ MonoBehaviour:
   firstShootDistance: 400
   secondShootDistance: 200
   gameDuration: 90
-  spawnDelay: 5
+  spawnDelayRange:
+  - 1
+  - 5
+  spawnDelayAfterBoss: 20
   enemyMaxLeft: -60
   enemyMaxRight: 60
   enemyMaxTop: 60
-  enemyMaxBottom: 0
+  enemyMaxBottom: -2
   scoreLabel: {fileID: 442362670}
   gameTimerLabel: {fileID: 1273805186}
   MotherShipPrefab: {fileID: 114508398236526044, guid: 92bf2d312524d9242ba351b12571accc,
@@ -347,73 +350,28 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114248843749761642, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: RocketsPanel
-      value: 
-      objectReference: {fileID: 1028227749}
     - target: {fileID: 114505134408973886, guid: 797b2f9c77876b042aebb9d88081f55c,
         type: 2}
       propertyPath: ChargesPanel
       value: 
       objectReference: {fileID: 619768640}
-    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
+    - target: {fileID: 114248843749761642, guid: 797b2f9c77876b042aebb9d88081f55c,
         type: 2}
-      propertyPath: CollisionModule.enabled
-      value: 1
+      propertyPath: RocketsPanel
+      value: 
+      objectReference: {fileID: 1028227749}
+    - target: {fileID: 65390154837974792, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 200.02
       objectReference: {fileID: 0}
-    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
+    - target: {fileID: 65390154837974792, guid: 797b2f9c77876b042aebb9d88081f55c,
         type: 2}
-      propertyPath: CollisionModule.maxKillSpeed
+      propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 198048956229312064, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 54081559323817650, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1950676723413796, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114658981718100078, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: MainLaser
-      value: 
-      objectReference: {fileID: 2001693231}
-    - target: {fileID: 114658981718100078, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: LaserBeamHitPrefab
-      value: 
-      objectReference: {fileID: 1846688344721154, guid: 76f3c0850dfc56345a683364310038d1,
-        type: 2}
-    - target: {fileID: 114321710175139882, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: MainLaser
-      value: 
-      objectReference: {fileID: 1537843055}
-    - target: {fileID: 114321710175139882, guid: 797b2f9c77876b042aebb9d88081f55c,
-        type: 2}
-      propertyPath: LaserBeamHitPrefab
-      value: 
-      objectReference: {fileID: 1846688344721154, guid: 76f3c0850dfc56345a683364310038d1,
-        type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65390154837974792, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &278901380
@@ -660,6 +618,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 442362668}
+--- !u!1 &501424713 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1950676723413796, guid: 797b2f9c77876b042aebb9d88081f55c,
+    type: 2}
+  m_PrefabInternal: {fileID: 263289150}
+--- !u!65 &501424716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 501424713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 826.81836, y: 356.84488, z: 855.21606}
+  m_Center: {x: 0, y: 178.80235, z: -4.0277715}
 --- !u!1 &619768639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,27 +1155,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1505235408}
   m_Mesh: {fileID: 4300008, guid: 635657376a428804dbacfb0f483b6fa9, type: 3}
---- !u!1 &1537843052 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1369640643521662, guid: 797b2f9c77876b042aebb9d88081f55c,
-    type: 2}
-  m_PrefabInternal: {fileID: 263289150}
---- !u!198 &1537843055 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198048956229312064, guid: 797b2f9c77876b042aebb9d88081f55c,
-    type: 2}
-  m_PrefabInternal: {fileID: 263289150}
---- !u!114 &1537843056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537843052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abf6dd51722b54d44aec39e608f42987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1603482197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,27 +1228,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1603482197}
   m_Mesh: {fileID: 4300000, guid: 635657376a428804dbacfb0f483b6fa9, type: 3}
---- !u!1 &2001693228 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1977789075166406, guid: 797b2f9c77876b042aebb9d88081f55c,
-    type: 2}
-  m_PrefabInternal: {fileID: 263289150}
---- !u!198 &2001693231 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198677187933808454, guid: 797b2f9c77876b042aebb9d88081f55c,
-    type: 2}
-  m_PrefabInternal: {fileID: 263289150}
---- !u!114 &2001693232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2001693228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abf6dd51722b54d44aec39e608f42987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2045713195
 GameObject:
   m_ObjectHideFlags: 0

@@ -469,10 +469,10 @@ MonoBehaviour:
   invisibleCapsule: {fileID: 1365359848740974}
   ExplosionPrefab: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
-  EnergyShield: 1000
+  EnergyShield: 700
   EnergyShieldRechrgeDelay: 2
   EnergyShieldRestoreSpeed: 10
-  Hitpoints: 3000
+  Hitpoints: 1500
   LaserBeamDamage: 20
   ScorePoints: 200
   addSeconds: 1
@@ -484,6 +484,7 @@ MonoBehaviour:
   - {fileID: 1061110494268168}
   - {fileID: 1410660572999204}
   rocket: {fileID: 114434192055348212, guid: 3c9d013938b9cd941abea439e926d777, type: 2}
+  target: {fileID: 1950676723413796, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
   ShieldBar: {fileID: 114016592899347914}
   HeathBar: {fileID: 114496033126892842}
 --- !u!114 &114722152809623402

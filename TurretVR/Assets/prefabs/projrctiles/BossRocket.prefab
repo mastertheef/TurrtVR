@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShotMaxRange: 500
-  ShotSpeed: 10
+  ShotSpeed: 1
   damage: 10
   HitEffect: {fileID: 0}
   debuf: {fileID: 0}

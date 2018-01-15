@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BossRocket : Projectile {
@@ -9,7 +10,7 @@ public class BossRocket : Projectile {
 
     // Use this for initialization
     void Start () {
-        transform.LookAt(Camera.main.transform);
+        
 	}
 	
 	// Update is called once per frame
@@ -17,24 +18,28 @@ public class BossRocket : Projectile {
 		
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    private new void OnCollisionEnter(Collision collision)
     {
+        base.OnCollisionEnter(collision);
+
         if (collision.gameObject.tag == "Player")
         {
-            var exp = Instantiate(ExplosionPrefab, gameObject.transform);
-            exp.transform.position = gameObject.transform.position;
-            
+            var exp = Instantiate(ExplosionPrefab, collision.contacts.First().point, Quaternion.identity);
+            exp.transform.localScale *= 3;
+
+            GameManager.Instance.CountDown -= ReduceSeconds;
             Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Laser" ||
             collision.gameObject.tag == "LaserBeam")
         {
-            Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+            var exp = Instantiate(ExplosionPrefab, collision.contacts.First().point, Quaternion.identity);
+            exp.transform.localScale *= 3;
             Destroy(gameObject);
-        }
 
-        
+            GiveResource();
+        }
     }
 
     // todo: refactor code duplication

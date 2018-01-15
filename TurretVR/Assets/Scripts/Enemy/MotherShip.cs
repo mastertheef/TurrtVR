@@ -28,6 +28,7 @@ public class MotherShip : MonoBehaviour {
 
     [SerializeField] private List<GameObject> rocketCannons;
     [SerializeField] private BossRocket rocket;
+    [SerializeField] GameObject target;
 
     [SerializeField] Image ShieldBar;
     [SerializeField] Image HeathBar;
@@ -59,7 +60,8 @@ public class MotherShip : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         var energyScale = ShieldBar.transform.localScale;
         var healthScale = HeathBar.transform.localScale;
         var shield = (energyShield * 100 / EnergyShield) / 100;
@@ -220,6 +222,9 @@ public class MotherShip : MonoBehaviour {
         foreach (var cannon in rocketCannons)
         {
             var r = Instantiate(rocket, cannon.transform.position, Quaternion.identity);
+            var shootPosition = new Vector3(target.transform.position.x, target.transform.position.y + 5, target.transform.position.z);
+
+            r.transform.rotation = Quaternion.LookRotation(shootPosition - r.transform.position);
             r.ReduceSeconds = 5;
             r.Fire();
             yield return new WaitForSeconds(rocketLaunchDelay);

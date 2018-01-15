@@ -19,7 +19,10 @@ public class MenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if (Input.touches.Length > 0)
+        {
+            EventSystem.current.SetSelectedGameObject(firstButton);
+        }
 	}
 
     public void Play()
