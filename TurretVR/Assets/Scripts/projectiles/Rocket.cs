@@ -57,15 +57,12 @@ public class Rocket : Projectile {
 
     private GameObject FindNearestTarget()
     {
-        // TODO: filter exploded enemies
-
         List<GameObject> allEnemies = GameObject.FindGameObjectsWithTag("Asteroid").ToList();
         allEnemies.AddRange(GameObject.FindGameObjectsWithTag("EnemyShip").ToList());
         allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Boss").ToList());
 
         List<GameObject> allVisible = GetAllOnScreen(allEnemies);
         return GetNearest(allVisible);
-
     }
 
     private List<GameObject> GetAllOnScreen(List<GameObject> allEnemies)
@@ -74,8 +71,8 @@ public class Rocket : Projectile {
         {
             Vector3 screenPoint = Camera.main.WorldToViewportPoint(allEnemies[i].transform.position);
             var enemy = allEnemies[i].GetComponent<Enemy>();
-
-            if (enemy != null || !IsOnScreen(screenPoint) || enemy.IsExploded)
+            
+            if (enemy == null || !IsOnScreen(screenPoint) || enemy.IsExploded)
             {
                 allEnemies.Remove(allEnemies[i]);
             }
