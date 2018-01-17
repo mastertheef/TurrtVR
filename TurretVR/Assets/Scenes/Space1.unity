@@ -294,23 +294,23 @@ MonoBehaviour:
   - {fileID: 114723558271541370, guid: dc465a89d16be854792e2092250f2c14, type: 2}
   - {fileID: 114430997070385602, guid: 47781772f22b9fe448f32db1ce60e3b0, type: 2}
   - {fileID: 114715953024307394, guid: c8b49426555b5744f968ccab93a0ebca, type: 2}
-  maxEnemies: 20
-  spawnDistance: 500
-  firstShootDistance: 400
-  secondShootDistance: 200
-  gameDuration: 90
+  MotherShipPrefab: {fileID: 114508398236526044, guid: 92bf2d312524d9242ba351b12571accc,
+    type: 2}
   spawnDelayRange:
   - 1
   - 5
-  spawnDelayAfterBoss: 20
+  spawnDistance: 500
+  firstShootDistance: 400
+  secondShootDistance: 200
   enemyMaxLeft: -60
   enemyMaxRight: 60
   enemyMaxTop: 60
   enemyMaxBottom: -2
+  bossSpawnSecond: 30
+  spawnDelayAfterBoss: 20
+  gameDuration: 90
   scoreLabel: {fileID: 442362670}
   gameTimerLabel: {fileID: 1273805186}
-  MotherShipPrefab: {fileID: 114508398236526044, guid: 92bf2d312524d9242ba351b12571accc,
-    type: 2}
 --- !u!1001 &263289150
 Prefab:
   m_ObjectHideFlags: 0

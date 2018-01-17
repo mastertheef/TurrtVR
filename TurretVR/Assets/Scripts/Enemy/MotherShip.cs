@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MotherShip : MonoBehaviour {
+    [Header("Dont touch")]
     [SerializeField] private float shipLength = 12f;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float portalInOffset = 102f;
     [SerializeField] private float portalOutOffset = 227f;
-    [SerializeField] private float spawnDistance = 350f;
+    
 
+    [Header("Prefabs and parts")]
     [SerializeField] private GameObject PortalPrefab;
     [SerializeField] private GameObject ship;
     [SerializeField] private GameObject invisibleCapsule;
     [SerializeField] private Explosion ExplosionPrefab;
+    [SerializeField] private List<GameObject> rocketCannons;
+    [SerializeField] private BossRocket rocket;
+    [SerializeField] GameObject target;
+    [SerializeField] Image ShieldBar;
+    [SerializeField] Image HeathBar;
 
+    [Header("Balance")]
+    [SerializeField] private float spawnDistance = 350f;
     [SerializeField] private float EnergyShield = 1000f;
-    [SerializeField] private float EnergyShieldRechrgeDelay = 2f;
     [SerializeField] private float EnergyShieldRestoreSpeed = 10f;
     [SerializeField] private float Hitpoints = 5000f;
     [SerializeField] private float LaserBeamDamage = 5f;
@@ -26,13 +34,8 @@ public class MotherShip : MonoBehaviour {
     [SerializeField] private float dieExplosionScale = 15;
     [SerializeField] private float rocketLaunchDelay = 0.7f;
 
-    [SerializeField] private List<GameObject> rocketCannons;
-    [SerializeField] private BossRocket rocket;
-    [SerializeField] GameObject target;
-
-    [SerializeField] Image ShieldBar;
-    [SerializeField] Image HeathBar;
-    
+    [Header("Not implemented")]
+    [SerializeField] private float EnergyShieldRechrgeDelay = 2f;
 
     private bool started = false;
     private bool visible = false;

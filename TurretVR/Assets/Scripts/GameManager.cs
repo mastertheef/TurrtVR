@@ -7,26 +7,28 @@ public class GameManager : Singleton<GameManager>
 {
 
     //[SerializeField] private List<Asteroid> asteroids;
-    [SerializeField] private List<Enemy> enemies;
 
-    [SerializeField] private int maxEnemies = 20;
+
+    [Header("Enemies")]
+    [SerializeField] private List<Enemy> enemies;
+    [SerializeField] private MotherShip MotherShipPrefab;
+
+    [Header("Spawning")]
+    [SerializeField] private float[] spawnDelayRange = new float[2] { 1, 5 };
     [SerializeField] private float spawnDistance = 500f;
     [SerializeField] private float firstShootDistance = 400f;
     [SerializeField] private float secondShootDistance = 200f;
-    [SerializeField] private float gameDuration = 90f;
-
-    [SerializeField] private float[] spawnDelayRange = new float[2] { 1, 5 };
-    [SerializeField] private float spawnDelayAfterBoss = 20;
- 
     [SerializeField] private float enemyMaxLeft = -60;
     [SerializeField] private float enemyMaxRight = 60;
     [SerializeField] private float enemyMaxTop = 40;
     [SerializeField] private float enemyMaxBottom = -5;
+    [SerializeField] private float bossSpawnSecond = 30;
+    [SerializeField] private float spawnDelayAfterBoss = 20;
+
+    [Header("Game")]
+    [SerializeField] private float gameDuration = 90f;
     [SerializeField] private Text scoreLabel;
     [SerializeField] private Text gameTimerLabel;
-
-    [SerializeField] private MotherShip MotherShipPrefab;
-
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
@@ -79,7 +81,6 @@ public class GameManager : Singleton<GameManager>
         CountDown = gameDuration;
         score = 0;
         StartCoroutine(Spawn());
-        mothershipSpawned = true;
     }
 
     // Update is called once per frame
@@ -103,7 +104,7 @@ public class GameManager : Singleton<GameManager>
     {
         while (CountDown > 0)
         {
-            if (gameTime >= 30 && !mothershipSpawned) // 30 seconds of game
+            if (gameTime >= bossSpawnSecond && !mothershipSpawned) 
             {
                 Instantiate(MotherShipPrefab);
                 mothershipSpawned = true;

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Turret : Singleton<Turret>
 {
-
+    [Header("Prefabs")]
     [SerializeField] private Projectile Shot;
     [SerializeField] private GameObject CannonLeft;
     [SerializeField] private GameObject CannonRight;
     [SerializeField] private GameObject FireStartEffect;
-
     [SerializeField] private LaserBeam LaserBeam;
 
+    [Header("Shooting")]
     [SerializeField] private float shootCounter;
     [SerializeField] private float shootDelay = 3;
 
@@ -80,6 +80,8 @@ public class Turret : Singleton<Turret>
 
     private void FixedUpdate()
     {
+        if (Input.touches.Length > 0) return;
+
         if (Input.GetButton("Fire1") && CanFire && !isFiring)
         {
             // StartCoroutine(PlayStartShootAndWait());
@@ -88,16 +90,8 @@ public class Turret : Singleton<Turret>
 
         if (!Input.GetButton("Fire1"))
         {
-            //AudioSource audioSource = GetComponent<AudioSource>();
-            //if (audioSource.isPlaying)
-            //{
-            //    audioSource.Stop();
-            //    DestroyFireStart();
-            //    StopCoroutine(PlayStartShootAndWait());
-            //}
             StopFiring();
         }
-
     }
 
     private IEnumerator PlayStartShootAndWait()

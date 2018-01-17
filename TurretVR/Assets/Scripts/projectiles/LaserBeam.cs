@@ -48,19 +48,22 @@ public class LaserBeam : MonoBehaviour
 
     public void ParticleCollision(GameObject other)
     {
-        collisionEvents = new List<ParticleCollisionEvent>();
-        MainLaser.GetCollisionEvents(other, collisionEvents);
+        if (other.gameObject.tag == "Boss")
+        {
+            collisionEvents = new List<ParticleCollisionEvent>();
+            MainLaser.GetCollisionEvents(other, collisionEvents);
 
-        if (laserBeamHit == null)
-        {
-            laserBeamHit = Instantiate(LaserBeamHitPrefab, collisionEvents.First().intersection.normalized, Quaternion.identity);
-            
+            if (laserBeamHit == null)
+            {
+                laserBeamHit = Instantiate(LaserBeamHitPrefab, collisionEvents.First().intersection.normalized, Quaternion.identity);
+
+            }
+            else
+            {
+                laserBeamHit.transform.position = collisionEvents.First().intersection;
+            }
+            var direction = Camera.main.transform.position - transform.position;
+            laserBeamHit.transform.rotation = Quaternion.FromToRotation(transform.up, direction);
         }
-        else
-        {
-            laserBeamHit.transform.position = collisionEvents.First().intersection;
-        }
-        var direction = Camera.main.transform.position - transform.position;
-        laserBeamHit.transform.rotation = Quaternion.FromToRotation(transform.up, direction); ;
     }
 }
