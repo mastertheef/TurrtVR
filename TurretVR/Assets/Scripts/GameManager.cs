@@ -81,6 +81,7 @@ public class GameManager : Singleton<GameManager>
         CountDown = gameDuration;
         score = 0;
         StartCoroutine(Spawn());
+        SoundManager.Instance.PlayBackground();
     }
 
     // Update is called once per frame
@@ -108,6 +109,7 @@ public class GameManager : Singleton<GameManager>
             {
                 Instantiate(MotherShipPrefab);
                 mothershipSpawned = true;
+                SoundManager.Instance.PlayBoss();
                 yield return new WaitForSeconds(spawnDelayAfterBoss);
             }
 

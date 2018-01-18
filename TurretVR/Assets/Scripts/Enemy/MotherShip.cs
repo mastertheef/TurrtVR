@@ -211,6 +211,8 @@ public class MotherShip : MonoBehaviour {
 
             yield return new WaitForSeconds(5);
             Destroy(gameObject);
+
+            SoundManager.Instance.PlayBackground();
         }
     }
 
