@@ -462,23 +462,12 @@ MonoBehaviour:
   moveSpeed: 10
   portalInOffset: 102
   portalOutOffset: 227
-  spawnDistance: 350
   PortalPrefab: {fileID: 1169025529230498, guid: 579bbfd2938720c428e260aa55081dc1,
     type: 2}
   ship: {fileID: 1843243949266142}
   invisibleCapsule: {fileID: 1365359848740974}
   ExplosionPrefab: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
-  EnergyShield: 700
-  EnergyShieldRechrgeDelay: 2
-  EnergyShieldRestoreSpeed: 10
-  Hitpoints: 1500
-  LaserBeamDamage: 20
-  ScorePoints: 200
-  addSeconds: 1
-  dieExplosionsCount: 30
-  dieExplosionScale: 15
-  rocketLaunchDelay: 0.7
   rocketCannons:
   - {fileID: 1799659256195402}
   - {fileID: 1061110494268168}
@@ -487,6 +476,17 @@ MonoBehaviour:
   target: {fileID: 1950676723413796, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
   ShieldBar: {fileID: 114016592899347914}
   HeathBar: {fileID: 114496033126892842}
+  spawnDistance: 350
+  EnergyShield: 600
+  EnergyShieldRestoreSpeed: 10
+  Hitpoints: 1200
+  LaserBeamDamage: 20
+  ScorePoints: 200
+  addSeconds: 1
+  dieExplosionsCount: 30
+  dieExplosionScale: 15
+  rocketLaunchDelay: 0.7
+  EnergyShieldRechrgeDelay: 2
 --- !u!114 &114722152809623402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -566,7 +566,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355154674869918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0.26549911, z: -0.00000008940697}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000008940697}
   m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 224979935034287500}
@@ -584,7 +584,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1978335976799352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0.51549864, z: -0.00000011920929}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000011920929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224979935034287500}
@@ -602,7 +602,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1567335607708848}
   m_LocalRotation: {x: 0.50000006, y: 0.49999994, z: 0.50000006, w: 0.49999994}
-  m_LocalPosition: {x: 0, y: 3.8800004, z: 2.2200003}
+  m_LocalPosition: {x: 0, y: 0, z: 2.2200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224246081242498930}
