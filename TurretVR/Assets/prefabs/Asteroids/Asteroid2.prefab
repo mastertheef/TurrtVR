@@ -113,11 +113,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
-  hitPoints: 12
-  moveSpeed: 0.1
+  hitPoints: 7
+  moveSpeed: 0.01
   score: 5
   addSeconds: 1
   reduceSeconds: 1
+  resorceProbability: 0.1
   rotationSpeed: 1
   debuff: {fileID: 114904634479761950, guid: 5d12bfe17078e734ab570237ae108c82, type: 2}
 --- !u!136 &136503399641108846
