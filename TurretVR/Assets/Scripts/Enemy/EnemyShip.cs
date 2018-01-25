@@ -63,6 +63,7 @@ public class EnemyShip : Enemy {
     public void Die()
     {
         Explode();
+        GameManager.Instance.ReduceShips();
     }
 
     private void FixedUpdate()

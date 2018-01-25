@@ -19,16 +19,19 @@ public class SoundManager : Singleton<SoundManager> {
 
     private IEnumerator SoundFadeOut()
     {
-        float startVolume = source.volume;
-
-        while (source.volume > 0)
+        if (source != null)
         {
-            source.volume -= startVolume * Time.deltaTime / 2;
-            yield return null;
-        }
+            float startVolume = source.volume;
 
-        source.Stop();
-        source.volume = startVolume;
+            while (source.volume > 0)
+            {
+                source.volume -= startVolume * Time.deltaTime / 2;
+                yield return null;
+            }
+
+            source.Stop();
+            source.volume = startVolume;
+        }
     }
 
     private IEnumerator PlayMusic(AudioClip clip)
@@ -37,6 +40,11 @@ public class SoundManager : Singleton<SoundManager> {
         yield return new WaitForSeconds(2);
         source.clip = clip;
         source.Play();
+    }
+
+    public void StopMusic()
+    {
+        StartCoroutine(SoundFadeOut());
     }
 
     public void PlayBackground()

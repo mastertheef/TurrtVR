@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
-
-    //[SerializeField] private List<Asteroid> asteroids;
-
-
     [Header("Enemies")]
     [SerializeField] private List<Enemy> enemies;
     [SerializeField] private MotherShip MotherShipPrefab;
@@ -24,6 +21,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float enemyMaxBottom = -5;
     [SerializeField] private float bossSpawnSecond = 30;
     [SerializeField] private float spawnDelayAfterBoss = 20;
+    [SerializeField] private int maxActiveAsteroids = 7;
+    [SerializeField] private int maxActiveShips = 3;
 
     [Header("Game")]
     [SerializeField] private float gameDuration = 90f;
@@ -37,6 +36,9 @@ public class GameManager : Singleton<GameManager>
     private int shipsMissed = 0;
     private int gameTime;
     private bool shipDamaged = false;
+
+    private int activeAsteroids;
+    private int activeShips;
 
     public int AsteroidsCount
     {
@@ -80,24 +82,44 @@ public class GameManager : Singleton<GameManager>
         InvokeRepeating("GameCountDown", 0, 1);
         CountDown = gameDuration;
         score = 0;
+        activeAsteroids = 0;
+        activeShips = 0;
         StartCoroutine(Spawn());
         SoundManager.Instance.PlayBackground();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void SpawnEnemy()
     {
-        if (CountDown > 0)
+        if (CountDown > 0 && (activeShips < maxActiveShips || activeAsteroids < maxActiveAsteroids))
         {
-            //Enemy enemy = Instantiate(enemies[enemies.Count - 2]);
-            Enemy enemy = Instantiate(enemies[Random.Range(0, enemies.Count - 1)]);
+            int enemyIndex = 0;
+            if (activeShips >= maxActiveShips)
+            {
+                enemyIndex = Random.Range(0, 2);
+            }
+            else if (activeAsteroids >= maxActiveAsteroids)
+            {
+                enemyIndex = Random.Range(3, enemies.Count-1);
+            }
+            else
+            {
+                enemyIndex = Random.Range(0, enemies.Count - 1);
+            }
+
+            Enemy enemy = Instantiate(enemies[enemyIndex]);
+
+            if (enemy.tag == "Asteroid")
+            {
+                activeAsteroids++;
+            }
+            else
+            {
+                activeShips++;
+            }
+            
             Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxBottom, enemyMaxTop), Random.Range(enemyMaxLeft, enemyMaxRight),  0);
-            enemy.transform.position = transform.position + randAng * Vector3.forward * spawnDistance;
+            var newPosition = transform.position + randAng * Vector3.forward * spawnDistance;
+            enemy.transform.position = newPosition;
         }
     }
 
@@ -110,6 +132,7 @@ public class GameManager : Singleton<GameManager>
                 Instantiate(MotherShipPrefab);
                 mothershipSpawned = true;
                 SoundManager.Instance.PlayBoss();
+
                 yield return new WaitForSeconds(spawnDelayAfterBoss);
             }
 
@@ -125,11 +148,23 @@ public class GameManager : Singleton<GameManager>
         if (--CountDown == 0)
         {
             CancelInvoke("GameCountDown");
+            SoundManager.Instance.StopMusic();
             SceneController.Instance.FinalScore = Score;
             SceneController.Instance.FadeAndLoadScene("Score");
         };
         gameTimerLabel.text = NiceTime(CountDown);
     }
+
+    public void ReduceAsteroids()
+    {
+        activeAsteroids = activeAsteroids > 0 ? activeAsteroids - 1 : 0;
+    }
+
+    public void ReduceShips()
+    {
+        activeShips = activeShips > 0 ? activeShips - 1 : 0;
+    }
+
 
     public string NiceTime(float timer)
     {

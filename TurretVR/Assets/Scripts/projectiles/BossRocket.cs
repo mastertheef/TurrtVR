@@ -31,15 +31,27 @@ public class BossRocket : Projectile {
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag == "Laser" ||
-            collision.gameObject.tag == "LaserBeam")
+        if (collision.gameObject.tag == "Laser" )
         {
-            var exp = Instantiate(ExplosionPrefab, collision.contacts.First().point, Quaternion.identity);
-            exp.transform.localScale *= 3;
-            Destroy(gameObject);
-
-            GiveResource();
+            Explode();
         }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.tag == "LaserBeam")
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        var exp = Instantiate(ExplosionPrefab, transform.localPosition, Quaternion.identity);
+        exp.transform.localScale *= 3;
+        Destroy(gameObject);
+
+        GiveResource();
     }
 
     // todo: refactor code duplication
