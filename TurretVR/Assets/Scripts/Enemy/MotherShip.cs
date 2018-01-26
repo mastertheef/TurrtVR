@@ -227,7 +227,7 @@ public class MotherShip : MonoBehaviour {
         foreach (var cannon in rocketCannons)
         {
             var r = Instantiate(rocket, cannon.transform.position, Quaternion.identity);
-            var shootPosition = new Vector3(target.transform.position.x, target.transform.position.y + 5, target.transform.position.z);
+            var shootPosition = new Vector3(target.transform.position.x, target.transform.position.y +2, target.transform.position.z);
 
             r.transform.rotation = Quaternion.LookRotation(shootPosition - r.transform.position);
             r.ReduceSeconds = 5;

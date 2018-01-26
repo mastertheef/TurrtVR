@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : Singleton<SceneController> {
 
@@ -31,6 +32,7 @@ public class SceneController : Singleton<SceneController> {
     }
     private IEnumerator FadeAndSwitchScenes(string sceneName)
     {
+        
         yield return StartCoroutine(Fade(1f));
         if (BeforeSceneUnload != null)
             BeforeSceneUnload();
@@ -40,6 +42,7 @@ public class SceneController : Singleton<SceneController> {
             AfterSceneLoad();
 
         yield return StartCoroutine(Fade(0f));
+        
     }
     private IEnumerator LoadSceneAndSetActive(string sceneName)
     {
@@ -50,7 +53,7 @@ public class SceneController : Singleton<SceneController> {
     private IEnumerator Fade(float finalAlpha)
     {
         isFading = true;
-        faderCanvasGroup.blocksRaycasts = true;
+        //faderCanvasGroup.blocksRaycasts = true;
         float fadeSpeed = Mathf.Abs(faderCanvasGroup.alpha - finalAlpha) / fadeDuration;
         while (!Mathf.Approximately(faderCanvasGroup.alpha, finalAlpha))
         {
@@ -59,6 +62,6 @@ public class SceneController : Singleton<SceneController> {
             yield return null;
         }
         isFading = false;
-        faderCanvasGroup.blocksRaycasts = false;
+        //faderCanvasGroup.blocksRaycasts = false;
     }
 }

@@ -80,8 +80,6 @@ public class Turret : Singleton<Turret>
 
     private void FixedUpdate()
     {
-        if (Input.touches.Length > 0) return;
-
         if (Input.GetButton("Fire1") && CanFire && !isFiring)
         {
             // StartCoroutine(PlayStartShootAndWait());

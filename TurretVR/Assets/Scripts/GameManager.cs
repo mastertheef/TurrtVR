@@ -103,7 +103,7 @@ public class GameManager : Singleton<GameManager>
             }
             else
             {
-                enemyIndex = Random.Range(0, enemies.Count - 1);
+                enemyIndex = Random.Range(0, enemies.Count-1);
             }
 
             Enemy enemy = Instantiate(enemies[enemyIndex]);

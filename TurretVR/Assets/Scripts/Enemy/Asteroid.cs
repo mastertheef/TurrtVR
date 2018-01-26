@@ -59,7 +59,9 @@ public class Asteroid : Enemy
     protected override void Explode()
     {
         base.Explode();
+        GameManager.Instance.AsteroidsCount++;
         GameManager.Instance.ReduceAsteroids();
+
     }
 
     private void OnParticleCollision(GameObject other)
