@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour {
                 Destroy(canvas.gameObject);
             }
 
+            GameManager.Instance.ShipsCount++;
             GameManager.Instance.CountDown += addSeconds;
             GameManager.Instance.Score += score;
 

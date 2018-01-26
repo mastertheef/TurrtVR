@@ -208,11 +208,9 @@ public class MotherShip : MonoBehaviour {
             ship.GetComponent<MeshRenderer>().enabled = false;
             GameManager.Instance.Score += ScorePoints;
             GameManager.Instance.CountDown += addSeconds;
-
+            SoundManager.Instance.PlayBackground();
             yield return new WaitForSeconds(5);
             Destroy(gameObject);
-
-            SoundManager.Instance.PlayBackground();
         }
     }
 
