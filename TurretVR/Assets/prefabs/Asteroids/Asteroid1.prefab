@@ -116,7 +116,7 @@ MonoBehaviour:
   hitPoints: 10
   moveSpeed: 0.01
   score: 5
-  addSeconds: 1
+  addSeconds: 3
   reduceSeconds: 1
   resorceProbability: 0.1
   rotationSpeed: 1

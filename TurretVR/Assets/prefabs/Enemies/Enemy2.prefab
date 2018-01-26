@@ -323,9 +323,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 1
-  m_InflateMesh: 1
+  m_CookingOptions: 15
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3fbde013fc1ae0a45a2afb111678bdee, type: 3}
 --- !u!64 &64813194731533518
@@ -337,9 +337,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 1
-  m_InflateMesh: 1
+  m_CookingOptions: 15
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3fbde013fc1ae0a45a2afb111678bdee, type: 3}
 --- !u!114 &114604086285221040
@@ -366,9 +366,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
-  hitPoints: 50
+  hitPoints: 35
   moveSpeed: 0.05
   score: 5
+  addSeconds: 5
+  reduceSeconds: 1
+  resorceProbability: 0.1
   laser: {fileID: 114023303464773588, guid: 7e3b9f19a73dec44a90cd80dd5948f0a, type: 2}
   cannons:
   - {fileID: 1235216163515702}
