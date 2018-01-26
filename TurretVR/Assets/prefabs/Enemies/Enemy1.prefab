@@ -1227,10 +1227,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114292143389242480, guid: a6596973493ce074b9048e997bc1f3bf,
     type: 2}
-  hitPoints: 35
+  hitPoints: 50
   moveSpeed: 0.05
-  score: 5
-  addSeconds: 1
+  score: 10
+  addSeconds: 10
   reduceSeconds: 1
   resorceProbability: 0.1
   laser: {fileID: 114023303464773588, guid: 7e3b9f19a73dec44a90cd80dd5948f0a, type: 2}

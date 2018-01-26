@@ -369,7 +369,7 @@ MonoBehaviour:
   hitPoints: 35
   moveSpeed: 0.05
   score: 5
-  addSeconds: 1
+  addSeconds: 5
   reduceSeconds: 1
   resorceProbability: 0.1
   laser: {fileID: 114023303464773588, guid: 7e3b9f19a73dec44a90cd80dd5948f0a, type: 2}

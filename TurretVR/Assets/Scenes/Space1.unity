@@ -310,9 +310,9 @@ MonoBehaviour:
   enemyMaxBottom: -2
   bossSpawnSecond: 50
   spawnDelayAfterBoss: 50
-  maxActiveAsteroids: 7
-  maxActiveShips: 3
-  gameDuration: 100
+  maxActiveAsteroids: 6
+  maxActiveShips: 4
+  gameDuration: 50
   scoreLabel: {fileID: 442362670}
   gameTimerLabel: {fileID: 1273805186}
 --- !u!1001 &263289150

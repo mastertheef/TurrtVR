@@ -478,10 +478,10 @@ MonoBehaviour:
   HeathBar: {fileID: 114496033126892842}
   spawnDistance: 350
   EnergyShield: 600
-  EnergyShieldRestoreSpeed: 10
+  EnergyShieldRestoreSpeed: 40
   Hitpoints: 1200
   LaserBeamDamage: 20
-  ScorePoints: 200
+  ScorePoints: 300
   addSeconds: 1
   dieExplosionsCount: 30
   dieExplosionScale: 15
