@@ -60,7 +60,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1373699732799560
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,6 +70,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4314882315997046}
   - component: {fileID: 114715953024307394}
+  - component: {fileID: 114577406377678070}
+  - component: {fileID: 114759570825073888}
   m_Layer: 8
   m_Name: Enemy2
   m_TagString: EnemyShip
@@ -342,6 +344,19 @@ MeshCollider:
   m_CookingOptions: 15
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3fbde013fc1ae0a45a2afb111678bdee, type: 3}
+--- !u!114 &114577406377678070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373699732799560}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119c5f3026ab0bf498d461ab1b26705d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 114177607189425284, guid: 3e65c66c9c2fdb74c92c07d0b3636066, type: 2}
+  pointer: {fileID: 114681713635430144, guid: 36eb98476fcd8af49911cc1fecfb945e, type: 2}
 --- !u!114 &114604086285221040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +394,8 @@ MonoBehaviour:
   shootScatter: 10
   moveScatter: 20
   flyAwayDistance: 600
+  shootDistance: 300
+  shootDelay: 5
 --- !u!114 &114732627278209958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,6 +423,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114759570825073888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373699732799560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4930c4af6339d714ea666ca2fae062bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  turnSpeed: 0.5
+  raycastOffset: 15
+  detectoionDistance: 75
+  virageDistance: 350
+  virageOffsetMin: 200
+  virageOffsetMax: 300
 --- !u!114 &114772059813665146
 MonoBehaviour:
   m_ObjectHideFlags: 1

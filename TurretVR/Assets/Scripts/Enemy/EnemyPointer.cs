@@ -10,10 +10,12 @@ public class EnemyPointer : MonoBehaviour {
     private bool indicatioEnabled = true;
     private Image actualArrow;
     private Image actualPointer;
+    float scalefactor;
 
-	// Use this for initialization
-	void Start () {
-        var UI = GameObject.FindGameObjectWithTag("Canvas").transform;
+    // Use this for initialization
+    void Start () {
+        var Canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
+        var UI = Canvas.transform;
 
         actualArrow = Instantiate(arrow);
         actualArrow.transform.SetParent(UI);
@@ -23,7 +25,9 @@ public class EnemyPointer : MonoBehaviour {
         actualPointer.transform.SetParent(UI);
         actualPointer.enabled = false;
 
-	}
+        scalefactor = Canvas.scaleFactor;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -84,7 +88,7 @@ public class EnemyPointer : MonoBehaviour {
             screenpos.x > 0 && screenpos.x < Screen.width &&
             screenpos.y > 0 && screenpos.y < Screen.height)
         {
-            actualPointer.transform.position = screenpos;
+            actualPointer.GetComponent<RectTransform>().anchoredPosition = screenpos;
             
             actualPointer.enabled = true;
             actualArrow.enabled = false;

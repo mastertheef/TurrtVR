@@ -74,7 +74,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 0
     - _Parallax: 0.02
-    - _Shininess: 0.03
+    - _Shininess: 0.028
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

@@ -88,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1386597666968892
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4759552753845340}
   - component: {fileID: 114430997070385602}
+  - component: {fileID: 114991691306571252}
   m_Layer: 8
   m_Name: Enemy1
   m_TagString: EnemyShip
@@ -359,8 +360,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516568694142898}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 13.093847, y: 4.1603856, z: 22.457634}
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.0000001872535}
+  m_LocalPosition: {x: 80.37033, y: 6.2, z: 500}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4925956957136704}
@@ -376,7 +377,7 @@ Transform:
   - {fileID: 224578635087971850}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!4 &4819740289211470
 Transform:
   m_ObjectHideFlags: 1
@@ -1316,6 +1317,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc22683efa369f243bc0e22310a6d2b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114991691306571252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516568694142898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4930c4af6339d714ea666ca2fae062bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  turnSpeed: 0.5
+  raycastOffset: 15
+  detectoionDistance: 75
+  virageDistance: 350
+  virageOffsetMin: 200
+  virageOffsetMax: 300
 --- !u!222 &222545825389358456
 CanvasRenderer:
   m_ObjectHideFlags: 1

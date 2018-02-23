@@ -25,6 +25,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int maxActiveShips = 3;
 
     [Header("Game")]
+    [SerializeField]
+    private GameObject player;
     [SerializeField] private float gameDuration = 90f;
     [SerializeField] private Text scoreLabel;
     [SerializeField] private Text gameTimerLabel;
@@ -39,6 +41,8 @@ public class GameManager : Singleton<GameManager>
 
     private int activeAsteroids;
     private int activeShips;
+
+    public GameObject Player { get { return player; } }
 
     public int AsteroidsCount
     {
@@ -64,6 +68,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public int MaxEnemies { get { return maxActiveAsteroids + maxActiveShips + 1; } }
+
     public float SpawnDistance { get { return spawnDistance; } }
     public float FirstShootDistance { get { return firstShootDistance; } }
     public float SecondShootDistance { get { return secondShootDistance; } }
@@ -75,6 +81,7 @@ public class GameManager : Singleton<GameManager>
     private bool mothershipSpawned;
 
     private int enemyCount = 0;
+    Quaternion rotation;
 
     // Use this for initialization
     void Start()
@@ -99,14 +106,15 @@ public class GameManager : Singleton<GameManager>
             }
             else if (activeAsteroids >= maxActiveAsteroids)
             {
-                enemyIndex = Random.Range(3, enemies.Count-1);
+                enemyIndex = Random.Range(3, enemies.Count);
             }
             else
             {
-                enemyIndex = Random.Range(0, enemies.Count-1);
+                enemyIndex = Random.Range(0, enemies.Count);
             }
 
             Enemy enemy = Instantiate(enemies[enemyIndex]);
+            
 
             if (enemy.tag == "Asteroid")
             {
@@ -120,6 +128,7 @@ public class GameManager : Singleton<GameManager>
             Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxBottom, enemyMaxTop), Random.Range(enemyMaxLeft, enemyMaxRight),  0);
             var newPosition = transform.position + randAng * Vector3.forward * spawnDistance;
             enemy.transform.position = newPosition;
+            IndicatorManager.Instance.AddIndicator(enemy.transform);
         }
     }
 

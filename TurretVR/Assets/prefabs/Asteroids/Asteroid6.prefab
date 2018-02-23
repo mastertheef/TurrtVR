@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114635963632962484}
   - component: {fileID: 54853188244054414}
   - component: {fileID: 135568258981132292}
+  - component: {fileID: 114735736434222234}
   m_Layer: 8
   m_Name: Asteroid6
   m_TagString: Asteroid
@@ -118,8 +119,22 @@ MonoBehaviour:
   score: 5
   addSeconds: 1
   reduceSeconds: 1
+  resorceProbability: 0.1
   rotationSpeed: 1
   debuff: {fileID: 114904634479761950, guid: 5d12bfe17078e734ab570237ae108c82, type: 2}
+--- !u!114 &114735736434222234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540242017845564}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119c5f3026ab0bf498d461ab1b26705d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 114177607189425284, guid: 3e65c66c9c2fdb74c92c07d0b3636066, type: 2}
+  pointer: {fileID: 114681713635430144, guid: 36eb98476fcd8af49911cc1fecfb945e, type: 2}
 --- !u!135 &135568258981132292
 SphereCollider:
   m_ObjectHideFlags: 1

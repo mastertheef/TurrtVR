@@ -26,16 +26,6 @@ public class Rocket : Projectile {
         StartCoroutine(Move());
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    private void FixedUpdate()
-    {
-
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         string colTag = collision.gameObject.tag;

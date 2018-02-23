@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class LaserBeamController : Singleton<LaserBeamController> {
 
@@ -33,8 +34,7 @@ public class LaserBeamController : Singleton<LaserBeamController> {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (Input.GetButtonDown("Fire2") && LaserCharges > 0 && !isFiring && canFire)
+        if (CrossPlatformInputManager.GetButtonDown("Laser") && LaserCharges > 0 && !isFiring && canFire)
         {
             currentCharge = chargeImages.Last();
             blinking = StartCoroutine(BlinkCharge(currentCharge));

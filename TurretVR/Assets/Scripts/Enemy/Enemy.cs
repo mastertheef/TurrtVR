@@ -17,17 +17,7 @@ public class Enemy : MonoBehaviour {
 
     public bool IsExploded { get { return isExploded; } }
 
-   // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-       
-    }
-
-    protected virtual void Explode()
+        protected virtual void Explode()
     {
         if (!isExploded)
         {
@@ -42,15 +32,10 @@ public class Enemy : MonoBehaviour {
             if (collider != null)
                 collider.enabled = false;
 
-            Canvas canvas = GetComponentInChildren<Canvas>();
-            if (canvas != null)
-            {
-                Destroy(canvas.gameObject);
-            }
-
             GameManager.Instance.ShipsCount++;
             GameManager.Instance.CountDown += addSeconds;
             GameManager.Instance.Score += score;
+            IndicatorManager.Instance.RemoveIndicator(gameObject.transform);
 
             GiveResource();
         }

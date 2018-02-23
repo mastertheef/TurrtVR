@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class RocketController : Singleton<RocketController> {
 
@@ -26,7 +27,7 @@ public class RocketController : Singleton<RocketController> {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Fire3") && RocketCount > 0)
+		if (CrossPlatformInputManager.GetButtonDown("Rocket") && RocketCount > 0)
         {
             Instantiate(RocketPrefab);
             RocketCount--;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Turret : Singleton<Turret>
 {
@@ -80,13 +81,13 @@ public class Turret : Singleton<Turret>
 
     private void FixedUpdate()
     {
-        if (Input.GetButton("Fire1") && CanFire && !isFiring)
+        if (CrossPlatformInputManager.GetButton("Fire") && CanFire && !isFiring)
         {
             // StartCoroutine(PlayStartShootAndWait());
             StartFiring();
         }
 
-        if (!Input.GetButton("Fire1"))
+        if (!CrossPlatformInputManager.GetButton("Fire"))
         {
             StopFiring();
         }
